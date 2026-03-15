@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — Govardhan Farm</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="assets/drone-4.jpg" type="image/jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <noscript>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: sans-serif;
+        background: #0e0e0c;
+        color: #f2ede3;
+        text-align: center;
+        padding: 24px;
+      }
+    </style>
+    <p>JavaScript is required. Please enable it in your browser.</p>
+  </noscript>
+  <style>
+    /* FIX L-01: Dead .otp-reveal CSS removed */
+    :root {
+      --cream: #f2ede3;
+      --dark: #0e0e0c;
+      --accent: #8b7355;
+      --gold: #c9a84c;
+      --muted: rgba(242, 237, 227, 0.45);
+      --border: rgba(242, 237, 227, 0.12);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Jost', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: var(--font-sans);
+      background: var(--dark);
+      color: var(--cream);
+      overflow: hidden;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: url('assets/drone-2.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.28) saturate(0.6);
+      transform: scale(1.04);
+      transition: transform 12s ease-out;
+    }
+
+    .bg.loaded {
+      transform: scale(1);
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 10;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(14, 14, 12, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px 40px 40px;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(201, 168, 76, 0.08);
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(139, 115, 85, 0.3), rgba(201, 168, 76, 0.15));
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: 0.03em;
+      display: block;
+    }
+
+    .brand-sub {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+      display: block;
+    }
+
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .step-desc strong {
+      color: rgba(242, 237, 227, 0.75);
+      font-weight: 500;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .phone-wrap {
+      display: flex;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.25s;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .phone-wrap:focus-within {
+      border-color: rgba(201, 168, 76, 0.45);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.08);
+    }
+
+    .phone-prefix {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 14px;
+      border-right: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--cream);
+      white-space: nowrap;
+      background: rgba(255, 255, 255, 0.03);
+      flex-shrink: 0;
+    }
+
+    .input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 14px 16px;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--cream);
+      caret-color: var(--gold);
+    }
+
+    .input::placeholder {
+      color: rgba(242, 237, 227, 0.2);
+    }
+
+    .input-plain {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      caret-color: var(--gold);
+    }
+
+    .input-plain::placeholder {
+      color: rgba(242, 237, 227, 0.2);
+    }
+
+    .input-plain:focus {
+      border-color: rgba(201, 168, 76, 0.45);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.08);
+    }
+
+    .otp-row {
+      display: flex;
+      gap: 6px;
+      width: 100%;
+      gap: 10px;
+    }
+
+    .otp-box {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 2px;
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      caret-color: var(--gold);
+      width: 100%;
+
+    }
+
+    .otp-box:focus {
+      border-color: rgba(201, 168, 76, 0.5);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+      background: rgba(201, 168, 76, 0.05);
+    }
+
+    .otp-box.filled {
+      border-color: rgba(201, 168, 76, 0.35);
+      color: var(--gold);
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--accent), #7a6348);
+      border: none;
+      border-radius: 12px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: white;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: opacity 0.25s, transform 0.2s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent);
+      pointer-events: none;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(139, 115, 85, 0.4);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-ghost {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      cursor: pointer;
+      padding: 8px 0;
+      transition: color 0.2s;
+      text-align: left;
+    }
+
+    .btn-ghost:hover {
+      color: var(--cream);
+    }
+
+    .otp-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    .otp-timer {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+
+    .otp-timer .t {
+      color: var(--gold);
+    }
+
+    .btn-resend {
+      background: none;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: rgba(201, 168, 76, 0.7);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .btn-resend:hover {
+      color: var(--gold);
+    }
+
+    .btn-resend:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .status {
+      font-size: 0.78rem;
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .status.error {
+      display: block;
+      background: rgba(224, 92, 92, 0.12);
+      color: #e88;
+      border: 1px solid rgba(224, 92, 92, 0.2);
+    }
+
+    .status.success {
+      display: block;
+      background: rgba(76, 175, 125, 0.12);
+      color: #7ec;
+      border: 1px solid rgba(76, 175, 125, 0.2);
+    }
+
+    .status.loading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .spinner {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+      animation: stepIn 0.45s var(--ease) both;
+    }
+
+    @keyframes stepIn {
+      from {
+        opacity: 0;
+        transform: translateX(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .pending-card {
+      text-align: center;
+      padding: 8px 0;
+    }
+
+    .pending-icon {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .pending-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .pending-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 300px;
+      margin: 0 auto 20px;
+    }
+
+    .phone-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: rgba(201, 168, 76, 0.9);
+      margin-bottom: 20px;
+    }
+
+    .bottom-note {
+      text-align: center;
+      font-size: 0.68rem;
+      color: rgba(242, 237, 227, 0.2);
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+
+    @media(max-width:480px) {
+      .card {
+        padding: 36px 24px 28px;
+        border-radius: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg" id="bg"></div>
+  <div class="grain"></div>
+  <div class="vignette"></div>
+  <div class="page">
+    <div class="card" id="card">
+      <div class="brand">
+        <div class="brand-mark">🌿</div>
+        <span class="brand-name">Govardhan Farm</span>
+        <span class="brand-sub">Member Access</span>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="step active" id="step-phone">
+        <h2 class="step-title">Welcome</h2>
+        <p class="step-desc">Enter your name and mobile number to sign in.</p>
+        <div class="field">
+          <label for="name-input">Your Name</label>
+          <input type="text" class="input-plain" id="name-input" placeholder="Ravi Patel" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label>Mobile Number</label>
+          <div class="phone-wrap">
+            <div class="phone-prefix"><span>🇮🇳</span><span>+91</span></div>
+            <input type="tel" class="input" id="phone-input" placeholder="98765 43210" maxlength="10"
+              pattern="[0-9]{10}" inputmode="numeric" autocomplete="tel-national" />
+          </div>
+        </div>
+        <div class="status" id="status-phone"></div>
+        <button class="btn-primary" id="btn-send-otp">Get OTP →</button>
+        <p class="bottom-note">New users need admin approval before accessing Farm Reels.</p>
+      </div>
+
+      <!-- STEP 2: FIX C-02 — timer-display element restored -->
+      <div class="step" id="step-otp">
+        <h2 class="step-title">Check your SMS</h2>
+        <p class="step-desc">A 6-digit code was sent to <strong id="otp-phone-display"></strong>.</p>
+        <div class="field">
+          <label>6-Digit OTP</label>
+          <div class="otp-row">
+            <input class="otp-box" maxlength="1" inputmode="numeric" />
+            <input class="otp-box" maxlength="1" inputmode="numeric" />
+            <input class="otp-box" maxlength="1" inputmode="numeric" />
+            <input class="otp-box" maxlength="1" inputmode="numeric" />
+            <input class="otp-box" maxlength="1" inputmode="numeric" />
+            <input class="otp-box" maxlength="1" inputmode="numeric" />
+          </div>
+        </div>
+        <!-- FIX C-02: Restored timer-display span -->
+        <div class="otp-footer">
+          <span class="otp-timer">Expires in <span class="t" id="timer-display">5:00</span></span>
+          <button class="btn-resend" id="btn-resend" disabled>Get New Code</button>
+        </div>
+        <div class="status" id="status-otp"></div>
+        <button class="btn-primary" id="btn-verify-otp" style="margin-top:16px;">Verify & Sign In →</button>
+        <div style="margin-top:16px;"><button class="btn-ghost" id="btn-back">← Change number</button></div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step" id="step-pending">
+        <div class="pending-card">
+          <span class="pending-icon">⏳</span>
+          <h3>Access Pending</h3>
+          <p>Your account has been created. The admin will approve your access to Farm Reels shortly.</p>
+          <div class="phone-chip" id="pending-phone">📱 +91 XXXXXXXXXX</div>
+          <p style="font-size:0.75rem;color:rgba(242,237,227,0.25);">Once approved, sign in again with your number.</p>
+          <button class="btn-primary" id="btn-try-again" style="margin-top:16px;">Try Signing In Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ════════════════════════════════════════
+       GOVARDHAN FARM — LOGIN  (v3 — all bugs fixed)
+    ════════════════════════════════════════ */
+    const SUPABASE_URL = 'https://gwuluqtwoburvncpolck.supabase.co'; // e.g. 'your-project.supabase.co'
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3dWx1cXR3b2J1cnZuY3BvbGNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxNjM2OTEsImV4cCI6MjA4ODczOTY5MX0.UTroFAmZV5PX5fYZoDwta3I1NX7sfASSKpMdqqh7Z78';
+    const ADMIN_PHONE = '919638616805'; // e.g. '91976543210'
+    /* ════════════════════════════════════════ */
+
+    (function () {
+      const SESSION_MS = 90 * 24 * 60 * 60 * 1000; // FIX H-04: unified 90 days
+      const OTP_COOLDOWN_MS = 60 * 1000;                 // FIX H-02: 60s between sends
+
+      const session = getSession();
+      if (session) {
+        window.location.href = 'profile.html';
+      }
+
+      setTimeout(() => document.getElementById('bg').classList.add('loaded'), 100);
+      setTimeout(() => document.getElementById('card').classList.add('visible'), 200);
+
+      let currentPhone = '';
+      let currentName = '';
+      let timerInterval;
+      let lastOTPSentAt = 0;
+      let verifying = false; // FIX M-01: double-call guard
+
+      /* ── OTP Boxes ── */
+      const otpBoxes = Array.from(document.querySelectorAll('.otp-box'));
+      otpBoxes.forEach((box, i) => {
+        box.addEventListener('input', e => {
+          box.value = e.target.value.replace(/\D/g, '').slice(-1);
+          box.classList.toggle('filled', !!box.value);
+          if (box.value && i < 5) otpBoxes[i + 1].focus();
+          if (otpBoxes.every(b => b.value) && !verifying) verifyOTP(); // FIX M-01
+        });
+        box.addEventListener('keydown', e => {
+          if (e.key === 'Backspace' && !box.value && i > 0) {
+            otpBoxes[i - 1].value = ''; otpBoxes[i - 1].classList.remove('filled'); otpBoxes[i - 1].focus();
+          }
+        });
+        box.addEventListener('paste', e => {
+          e.preventDefault();
+          const p = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+          p.split('').forEach((ch, idx) => { if (otpBoxes[idx]) { otpBoxes[idx].value = ch; otpBoxes[idx].classList.add('filled'); } });
+          otpBoxes[Math.min(p.length, 5)].focus();
+          if (p.length >= 6 && !verifying) verifyOTP(); // FIX M-01
+        });
+      });
+
+      /* ── Send OTP ── */
+      document.getElementById('btn-send-otp').addEventListener('click', sendOTP);
+      document.getElementById('phone-input').addEventListener('keydown', e => { if (e.key === 'Enter') sendOTP(); });
+
+      async function sendOTP() {
+        const nameVal = document.getElementById('name-input').value.trim();
+        const phoneVal = document.getElementById('phone-input').value.replace(/\D/g, '');
+        const statusEl = document.getElementById('status-phone');
+        if (!nameVal) return showStatus(statusEl, 'error', 'Please enter your name.');
+        if (phoneVal.length !== 10) return showStatus(statusEl, 'error', 'Please enter a valid 10-digit number.');
+
+        /* FIX H-02: Client-side rate limit */
+        const elapsed = Date.now() - lastOTPSentAt;
+        if (elapsed < OTP_COOLDOWN_MS) {
+          const wait = Math.ceil((OTP_COOLDOWN_MS - elapsed) / 1000);
+          return showStatus(statusEl, 'error', `Please wait ${wait}s before requesting another OTP.`);
+        }
+
+        currentPhone = '91' + phoneVal;
+        currentName = nameVal;
+        showStatus(statusEl, 'loading', 'Sending OTP via SMS…');
+        document.getElementById('btn-send-otp').disabled = true;
+
+        try {
+          const res = await fetch(SUPABASE_URL + '/functions/v1/send-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+            body: JSON.stringify({ action: 'send', phone: currentPhone }),
+          });
+          const data = await res.json();
+          if (!res.ok || data.error) throw new Error(data.error || 'Failed to send OTP.');
+
+          lastOTPSentAt = Date.now(); // FIX H-02
+          hideStatus(statusEl);
+          document.getElementById('btn-send-otp').disabled = false;
+          document.getElementById('otp-phone-display').textContent = '+91 ' + phoneVal;
+          showStep('step-otp');
+          startTimer(300);
+          otpBoxes[0].focus();
+        } catch (err) {
+          showStatus(statusEl, 'error', err.message || 'Could not send OTP.');
+          document.getElementById('btn-send-otp').disabled = false;
+        }
+      }
+
+      /* ── Verify OTP — FIX H-01: done server-side via Edge Function ── */
+      document.getElementById('btn-verify-otp').addEventListener('click', () => { if (!verifying) verifyOTP(); });
+
+      async function verifyOTP() {
+        const entered = otpBoxes.map(b => b.value).join('');
+        const statusEl = document.getElementById('status-otp');
+        if (entered.length < 6) return showStatus(statusEl, 'error', 'Please enter all 6 digits.');
+
+        verifying = true; // FIX M-01
+        showStatus(statusEl, 'loading', 'Verifying…');
+        document.getElementById('btn-verify-otp').disabled = true;
+
+        try {
+          /* FIX H-01: Browser never reads otp_codes — Edge Function verifies server-side */
+          const vRes = await fetch(SUPABASE_URL + '/functions/v1/send-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+            body: JSON.stringify({ action: 'verify', phone: currentPhone, code: entered }),
+          });
+          const vData = await vRes.json();
+          if (!vRes.ok || vData.error) throw new Error(vData.error || 'Verification failed.');
+
+          /* Get or create profile */
+          const pRes = await fetch(`${SUPABASE_URL}/rest/v1/profiles?phone=eq.${currentPhone}&limit=1`,
+            { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } });
+          const profiles = await pRes.json();
+
+          let profile;
+          if (profiles.length) {
+            profile = profiles[0];
+          } else {
+            /* All new users get verified instantly — no admin approval needed */
+            const role = currentPhone === ADMIN_PHONE ? 'admin' : 'verified';
+            const cr = await fetch(`${SUPABASE_URL}/rest/v1/profiles`, {
+              method: 'POST',
+              headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+              body: JSON.stringify({ phone: currentPhone, full_name: currentName, role }),
+            });
+            const created = await cr.json();
+            profile = Array.isArray(created) ? created[0] : created;
+          }
+
+          /* All logged-in users go straight to videos */
+          saveSession({ phone: profile.phone, name: profile.full_name, role: profile.role });
+          clearTimer();
+          hideStatus(statusEl);
+          document.getElementById('btn-verify-otp').disabled = false;
+          verifying = false;
+          window.location.href = 'profile.html';
+        } catch (err) {
+          showStatus(statusEl, 'error', err.message);
+          document.getElementById('btn-verify-otp').disabled = false;
+          verifying = false; // FIX M-01: release on error
+          resetBoxes();
+          otpBoxes[0].focus();
+        }
+      }
+
+      document.getElementById('btn-resend').addEventListener('click', () => { clearTimer(); resetBoxes(); showStep('step-phone'); });
+      document.getElementById('btn-back').addEventListener('click', () => { clearTimer(); resetBoxes(); hideStatus(document.getElementById('status-otp')); showStep('step-phone'); });
+      document.getElementById('btn-try-again').addEventListener('click', () => showStep('step-phone'));
+
+      /* FIX C-02: timer-display element now exists in HTML */
+      function startTimer(secs) {
+        const el = document.getElementById('timer-display');
+        const rb = document.getElementById('btn-resend');
+        rb.disabled = true;
+        let rem = secs;
+        timerInterval = setInterval(() => {
+          rem--;
+          if (el) el.textContent = Math.floor(rem / 60).toString().padStart(2, '0') + ':' + (rem % 60).toString().padStart(2, '0');
+          if (rem <= 0) { clearTimer(); if (el) el.textContent = 'Expired'; rb.disabled = false; }
+        }, 1000);
+      }
+      function clearTimer() { clearInterval(timerInterval); }
+      function resetBoxes() { verifying = false; otpBoxes.forEach(b => { b.value = ''; b.classList.remove('filled'); }); }
+      function showStep(id) { document.querySelectorAll('.step').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+      function showStatus(el, type, msg) { el.className = `status ${type}`; el.style.display = type === 'loading' ? 'flex' : 'block'; el.innerHTML = type === 'loading' ? `<span class="spinner"></span>${msg}` : msg; }
+      function hideStatus(el) { el.style.display = 'none'; el.className = 'status'; }
+      function saveSession(d) { localStorage.setItem('gf_session', JSON.stringify({ ...d, loginTime: Date.now() })); }
+      function getSession() {
+        try {
+          const s = JSON.parse(localStorage.getItem('gf_session'));
+          if (!s) return null;
+          if (Date.now() - s.loginTime > SESSION_MS) { localStorage.removeItem('gf_session'); return null; }
+          return s;
+        } catch { return null; }
+      }
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /enquiry.html
+
+Sitemap: https://govardhanfarm.com/sitemap.xml

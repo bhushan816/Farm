@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile — Govardhan Farm</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="assets/drone-4.jpg" type="image/jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+Garamond:ital,wght@1,300&family=Jost:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:     #f2ede3;
+      --cream-mid: #ece6da;
+      --dark:      #191917;
+      --charcoal:  #2e2d2a;
+      --brown:     #5a4e40;
+      --text:      #3a3630;
+      --muted:     #8a8278;
+      --accent:    #8b7355;
+      --gold:      #c9a84c;
+      --border:    rgba(90,78,64,0.18);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-alt:   'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Jost', sans-serif;
+      --font-mono:  'DM Mono', monospace;
+      --nav-h: 72px;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ════════════════════════════════════
+       NAV (reused from site)
+    ════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 100;
+      display: flex; align-items: center;
+      padding: 0 32px;
+      justify-content: space-between;
+      background: rgba(242,237,227,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.1rem; font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-size: 0.7rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); }
+    .btn-logout-nav {
+      font-size: 0.7rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted);
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-sans);
+      transition: color 0.2s;
+    }
+    .btn-logout-nav:hover { color: #c0392b; }
+    @media (max-width: 640px) {
+      .nav-links .hide-sm { display: none; }
+      .nav { padding: 0 20px; }
+    }
+
+    /* ════════════════════════════════════
+       HERO BANNER
+    ════════════════════════════════════ */
+    .profile-hero {
+      margin-top: var(--nav-h);
+      background: var(--dark);
+      padding: 64px 32px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('assets/drone-3.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      opacity: 0.18;
+    }
+    .profile-hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .profile-left { display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+
+    /* Avatar */
+    .profile-avatar {
+      width: 88px; height: 88px;
+      background: linear-gradient(135deg, var(--accent), var(--gold));
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 2.2rem; font-weight: 400;
+      color: white;
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .profile-info { padding-bottom: 4px; }
+    .profile-name {
+      font-family: var(--font-serif);
+      font-size: 2rem; font-weight: 400;
+      color: white; line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .profile-meta {
+      display: flex; align-items: center; gap: 16px;
+      flex-wrap: wrap;
+    }
+    .profile-phone {
+      font-family: var(--font-mono);
+      font-size: 0.78rem; color: rgba(255,255,255,0.45);
+    }
+    .profile-role-badge {
+      font-size: 0.6rem; letter-spacing: 0.14em;
+      text-transform: uppercase; font-weight: 500;
+      padding: 4px 12px; border-radius: 100px;
+    }
+    .profile-role-badge.admin    { background: rgba(201,168,76,0.2); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+    .profile-role-badge.verified { background: rgba(76,175,125,0.15); color: #7ec; border: 1px solid rgba(76,175,125,0.25); }
+    .profile-role-badge.pending  { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.12); }
+    .profile-joined {
+      font-size: 0.7rem; color: rgba(255,255,255,0.3);
+      letter-spacing: 0.06em;
+    }
+
+    /* Stats row */
+    .profile-stats {
+      display: flex; gap: 28px; flex-wrap: wrap;
+      padding-bottom: 4px;
+    }
+    .stat-item { text-align: right; }
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 1.8rem; font-weight: 400;
+      color: white; line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.62rem; letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 4px; display: block;
+    }
+
+    /* ════════════════════════════════════
+       TABS
+    ════════════════════════════════════ */
+    .tabs-bar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: var(--nav-h); z-index: 50;
+    }
+    .tabs-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; gap: 0;
+      padding: 0 32px;
+    }
+    .tab-btn {
+      padding: 18px 24px;
+      background: none; border: none;
+      font-family: var(--font-sans);
+      font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted); cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-count {
+      background: var(--cream-mid);
+      color: var(--muted);
+      font-size: 0.6rem;
+      padding: 2px 8px; border-radius: 100px;
+      font-weight: 500;
+    }
+    .tab-btn.active .tab-count { background: rgba(139,115,85,0.15); color: var(--accent); }
+
+    /* ════════════════════════════════════
+       CONTENT AREA
+    ════════════════════════════════════ */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 32px 80px;
+    }
+
+    /* Panel visibility */
+    .panel { display: none; }
+    .panel.active { display: block; animation: fadeUp 0.4s var(--ease) both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ════════════════════════════════════
+       PHOTO GRID
+    ════════════════════════════════════ */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .photo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s;
+    }
+    .photo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(90,78,64,0.12);
+    }
+    .photo-card-img-wrap {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .photo-card-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s var(--ease);
+      display: block;
+    }
+    .photo-card:hover .photo-card-img-wrap img { transform: scale(1.04); }
+
+    .photo-vis-badge {
+      position: absolute; top: 12px; left: 12px;
+      font-size: 0.6rem; letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 500;
+      padding: 4px 10px; border-radius: 100px;
+      backdrop-filter: blur(8px);
+    }
+    .photo-vis-badge.public  { background: rgba(76,175,125,0.85); color: white; }
+    .photo-vis-badge.private { background: rgba(0,0,0,0.55); color: rgba(255,255,255,0.8); }
+
+    .photo-view-overlay {
+      position: absolute; bottom: 10px; right: 10px;
+      display: flex; align-items: center; gap: 5px;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      border-radius: 100px;
+      padding: 4px 10px;
+      font-size: 0.68rem; color: rgba(255,255,255,0.85);
+      font-family: var(--font-mono);
+    }
+
+    .photo-card-body { padding: 16px 18px 18px; }
+    .photo-card-caption {
+      font-size: 0.88rem; color: var(--text);
+      line-height: 1.5; margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .photo-card-footer {
+      display: flex; align-items: center;
+      justify-content: space-between;
+    }
+    .photo-card-date {
+      font-size: 0.68rem; color: var(--muted);
+      font-family: var(--font-mono);
+    }
+    .btn-delete-card {
+      background: none; border: none;
+      font-size: 0.65rem; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted); cursor: pointer;
+      transition: color 0.2s;
+      font-family: var(--font-sans);
+      padding: 4px 0;
+    }
+    .btn-delete-card:hover { color: #c0392b; }
+
+    /* ════════════════════════════════════
+       VIDEO GRID
+    ════════════════════════════════════ */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .video-card {
+      background: var(--dark);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s;
+      position: relative;
+    }
+    .video-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+    .video-thumb-wrap {
+      position: relative;
+      aspect-ratio: 9/16;
+      overflow: hidden;
+      background: #111;
+    }
+    .video-thumb-wrap video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .video-play-icon {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .video-card:hover .video-play-icon { opacity: 1; }
+    .video-view-overlay {
+      position: absolute; bottom: 10px; right: 10px;
+      display: flex; align-items: center; gap: 5px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+      border-radius: 100px;
+      padding: 4px 10px;
+      font-size: 0.68rem; color: rgba(255,255,255,0.85);
+      font-family: var(--font-mono);
+    }
+    .video-card-body {
+      padding: 14px 16px 16px;
+    }
+    .video-card-caption {
+      font-size: 0.82rem; color: rgba(255,255,255,0.75);
+      line-height: 1.5; margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .video-card-footer {
+      display: flex; align-items: center;
+      justify-content: space-between;
+    }
+    .video-card-date {
+      font-size: 0.65rem; color: rgba(255,255,255,0.3);
+      font-family: var(--font-mono);
+    }
+    .btn-delete-video {
+      background: none; border: none;
+      font-size: 0.62rem; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25); cursor: pointer;
+      transition: color 0.2s;
+      font-family: var(--font-sans);
+    }
+    .btn-delete-video:hover { color: #e88; }
+
+    /* ════════════════════════════════════
+       EMPTY STATE
+    ════════════════════════════════════ */
+    .empty-state {
+      text-align: center;
+      padding: 72px 24px;
+      color: var(--muted);
+    }
+    .empty-state-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+    .empty-state h3 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem; font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+    .empty-state p { font-size: 0.85rem; line-height: 1.7; max-width: 300px; margin: 0 auto 28px; }
+    .btn-go {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--charcoal); color: white;
+      border: none; border-radius: 100px;
+      padding: 12px 28px;
+      font-family: var(--font-sans); font-size: 0.72rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.25s, transform 0.15s;
+    }
+    .btn-go:hover { background: var(--accent); transform: translateY(-2px); }
+
+    /* ════════════════════════════════════
+       LOADING SKELETON
+    ════════════════════════════════════ */
+    .skeleton {
+      background: linear-gradient(90deg, var(--cream-mid) 25%, var(--cream) 50%, var(--cream-mid) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 8px;
+    }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    .skeleton-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .skeleton-img  { aspect-ratio: 4/3; }
+    .skeleton-body { padding: 16px 18px; }
+    .skeleton-line { height: 12px; margin-bottom: 8px; border-radius: 6px; }
+    .skeleton-line.short { width: 55%; }
+
+    /* ════════════════════════════════════
+       LIGHTBOX
+    ════════════════════════════════════ */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(10,10,8,0.95);
+      backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .lightbox.open { opacity: 1; pointer-events: auto; }
+    .lightbox img {
+      max-width: 92vw; max-height: 85vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+      transform: scale(0.95);
+      transition: transform 0.3s var(--ease);
+    }
+    .lightbox.open img { transform: scale(1); }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 24px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white; font-size: 1.1rem;
+      width: 40px; height: 40px;
+      border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.18); }
+    .lightbox-caption {
+      position: absolute; bottom: 28px; left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.8);
+      white-space: nowrap; max-width: 80vw;
+      overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* ════════════════════════════════════
+       TOAST
+    ════════════════════════════════════ */
+    .toast {
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      z-index: 999;
+      background: var(--dark); color: var(--cream);
+      padding: 12px 24px; border-radius: 100px;
+      font-size: 0.82rem; white-space: nowrap;
+      opacity: 0; transition: transform 0.4s var(--ease), opacity 0.4s;
+      pointer-events: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    /* ════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════ */
+    .footer {
+      background: var(--dark); color: rgba(255,255,255,0.35);
+      text-align: center; padding: 28px;
+      font-size: 0.7rem; letter-spacing: 0.08em;
+    }
+    .footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer a:hover { color: rgba(255,255,255,0.6); }
+
+    @media (max-width: 640px) {
+      .profile-hero { padding: 40px 20px 36px; }
+      .profile-stats { gap: 20px; }
+      .stat-item { text-align: left; }
+      .content { padding: 32px 20px 60px; }
+      .tabs-inner { padding: 0 16px; overflow-x: auto; }
+      .tabs-inner::-webkit-scrollbar { display: none; }
+      .photo-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+      .video-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Govardhan Farm</a>
+    <div class="nav-links">
+      <a href="index.html" class="hide-sm">Home</a>
+      <a href="celebrations.html" class="hide-sm">Celebrations</a>
+      <a href="videos.html" class="hide-sm">Reels</a>
+      <a href="profile.html" class="active">Profile</a>
+      <button class="btn-logout-nav" id="btn-logout">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- ── PROFILE HERO ── -->
+  <section class="profile-hero">
+    <div class="profile-hero-inner">
+      <div class="profile-left">
+        <div class="profile-avatar" id="profile-avatar">?</div>
+        <div class="profile-info">
+          <h1 class="profile-name" id="profile-name">—</h1>
+          <div class="profile-meta">
+            <span class="profile-phone" id="profile-phone">—</span>
+            <span class="profile-role-badge" id="profile-role-badge">—</span>
+            <span class="profile-joined" id="profile-joined"></span>
+          </div>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="stat-item">
+          <span class="stat-num" id="stat-photos">—</span>
+          <span class="stat-label">Photos</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat-videos">—</span>
+          <span class="stat-label">Reels</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat-views">—</span>
+          <span class="stat-label">Total Views</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TABS ── -->
+  <div class="tabs-bar">
+    <div class="tabs-inner">
+      <button class="tab-btn active" data-tab="photos">
+        📷 Photos <span class="tab-count" id="tc-photos">0</span>
+      </button>
+      <button class="tab-btn" data-tab="videos">
+        🎬 Reels <span class="tab-count" id="tc-videos">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="content">
+
+    <!-- Photos panel -->
+    <div class="panel active" id="panel-photos">
+      <div class="photo-grid" id="photo-grid">
+        <!-- Skeletons shown while loading -->
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
+      </div>
+    </div>
+
+    <!-- Videos panel -->
+    <div class="panel" id="panel-videos">
+      <div class="video-grid" id="video-grid">
+        <!-- Loaded by JS -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lb-close">✕</button>
+    <img id="lb-img" src="" alt="" />
+    <div class="lightbox-caption" id="lb-caption"></div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    © <span class="footer-year"></span> Govardhan Farm ·
+    <a href="index.html">Home</a> ·
+    <a href="celebrations.html">Celebrations</a>
+  </footer>
+
+  <script>
+  /* ══════════════════════════════════════════════
+     GOVARDHAN FARM — PROFILE PAGE
+     Paste your Supabase credentials:
+  ══════════════════════════════════════════════ */
+  const SUPABASE_URL      = 'YOUR_SUPABASE_URL';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+  /* ════════════════════════════════════════════ */
+
+  (function () {
+
+    /* ── Session check ── */
+    function getSession() {
+      try {
+        const s = JSON.parse(localStorage.getItem('gf_session'));
+        if (!s) return null;
+        if (Date.now() - s.loginTime > 90 * 24 * 60 * 60 * 1000) {
+          localStorage.removeItem('gf_session'); return null;
+        }
+        return s;
+      } catch { return null; }
+    }
+
+    const session = getSession();
+    if (!session) { window.location.href = 'login.html'; return; }
+
+    const CONFIGURED = SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY.startsWith('eyJ');
+    const isAdmin    = session.role === 'admin';
+
+    /* ── Fill hero ── */
+    document.getElementById('profile-avatar').textContent = (session.name || '?')[0].toUpperCase();
+    document.getElementById('profile-name').textContent   = session.name || 'Farm Member';
+    document.getElementById('profile-phone').textContent  = '+' + session.phone;
+
+    const roleBadge = document.getElementById('profile-role-badge');
+    roleBadge.textContent = session.role;
+    roleBadge.className   = `profile-role-badge ${session.role}`;
+
+    /* ── Logout ── */
+    document.getElementById('btn-logout').addEventListener('click', () => {
+      localStorage.removeItem('gf_session');
+      window.location.href = 'login.html';
+    });
+
+    /* ── Tabs ── */
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    /* ── Lightbox ── */
+    const lightbox = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lb-img');
+    const lbCap    = document.getElementById('lb-caption');
+    document.getElementById('lb-close').addEventListener('click', closeLB);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+
+    function openLB(src, caption) {
+      lbImg.src = src; lbCap.textContent = caption;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLB() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => { lbImg.src = ''; }, 300);
+    }
+
+    /* ── Load everything ── */
+    loadPhotos();
+    loadVideos();
+
+    /* ════════════════════════
+       PHOTOS
+    ════════════════════════ */
+    async function loadPhotos() {
+      const grid = document.getElementById('photo-grid');
+      let publicPhotos  = [];
+      let privatePhotos = [];
+
+      // Fetch public photos from Supabase (only this user's)
+      if (CONFIGURED) {
+        try {
+          const res = await fetch(
+            `${SUPABASE_URL}/rest/v1/community_photos?uploader_phone=eq.${session.phone}&order=created_at.desc`,
+            { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+          );
+          if (res.ok) {
+            const rows = await res.json();
+            publicPhotos = rows.map(r => ({
+              id: r.id, src: r.image_url, caption: r.caption || 'A memory at Govardhan Farm',
+              date: new Date(r.created_at).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }),
+              views: r.views || 0, vis: 'public',
+            }));
+          }
+        } catch { /* silent */ }
+      }
+
+      // Load private photos from localStorage
+      try {
+        const stored = JSON.parse(localStorage.getItem('govardhan_private_v2') || '[]');
+        privatePhotos = stored
+          .filter(p => p.uploader_phone === session.phone || !p.uploader_phone)
+          .map(p => ({
+            id: p.id, src: p.dataUrl, caption: p.caption || 'A memory',
+            date: p.date || '—', views: 0, vis: 'private', localId: p.id,
+          }));
+      } catch { /* silent */ }
+
+      const all = [...publicPhotos, ...privatePhotos];
+      all.sort((a, b) => b.id > a.id ? 1 : -1);
+
+      // Update tab counts and stats
+      document.getElementById('tc-photos').textContent  = all.length;
+      document.getElementById('stat-photos').textContent = all.length;
+
+      const totalPhotoViews = publicPhotos.reduce((sum, p) => sum + (p.views || 0), 0);
+
+      // Render
+      grid.innerHTML = '';
+
+      if (!all.length) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column:1/-1">
+            <span class="empty-state-icon">📷</span>
+            <h3>No photos yet</h3>
+            <p>Upload your first photo on the Celebrations page and share it with the community.</p>
+            <a href="celebrations.html" class="btn-go">Go to Gallery →</a>
+          </div>`;
+        return;
+      }
+
+      all.forEach(p => grid.appendChild(makePhotoCard(p)));
+
+      // Update total views (photos + videos combined later)
+      updateTotalViews(totalPhotoViews, 0);
+    }
+
+    function makePhotoCard(p) {
+      const card = document.createElement('div');
+      card.className = 'photo-card';
+      card.innerHTML = `
+        <div class="photo-card-img-wrap">
+          <img src="${esc(p.src)}" alt="${esc(p.caption)}" loading="lazy" />
+          <span class="photo-vis-badge ${p.vis}">${p.vis === 'public' ? '🌍 Public' : '🔒 Private'}</span>
+          ${p.vis === 'public' ? `
+          <div class="photo-view-overlay">
+            👁 <span class="pv-count" data-id="${p.id}">${p.views}</span>
+          </div>` : ''}
+        </div>
+        <div class="photo-card-body">
+          <p class="photo-card-caption">${esc(p.caption)}</p>
+          <div class="photo-card-footer">
+            <span class="photo-card-date">${esc(p.date)}</span>
+            <button class="btn-delete-card" data-id="${p.id}" data-vis="${p.vis}" data-local="${p.localId || ''}">Remove</button>
+          </div>
+        </div>`;
+
+      // Open lightbox
+      card.querySelector('.photo-card-img-wrap').addEventListener('click', () => {
+        openLB(p.src, p.caption);
+        // Increment view if public
+        if (p.vis === 'public' && CONFIGURED) {
+          incrementPhotoView(p.id);
+          const vc = card.querySelector('.pv-count');
+          if (vc) vc.textContent = (parseInt(vc.textContent) || 0) + 1;
+        }
+      });
+
+      // Delete
+      card.querySelector('.btn-delete-card').addEventListener('click', async () => {
+        if (!confirm('Remove this photo?')) return;
+        if (p.vis === 'public' && CONFIGURED) {
+          try {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/community_photos?id=eq.${p.id}`, {
+              method: 'DELETE',
+              headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+            });
+            if (!res.ok) throw new Error();
+          } catch { showToast('Could not delete from server.'); return; }
+        } else {
+          try {
+            let stored = JSON.parse(localStorage.getItem('govardhan_private_v2') || '[]');
+            stored = stored.filter(x => x.id !== p.localId && x.id !== p.id);
+            localStorage.setItem('govardhan_private_v2', JSON.stringify(stored));
+          } catch { showToast('Could not delete.'); return; }
+        }
+        card.style.transition = 'opacity 0.3s, transform 0.3s';
+        card.style.opacity = '0'; card.style.transform = 'scale(0.92)';
+        setTimeout(() => { card.remove(); recomputeStats(); }, 300);
+        showToast('Photo removed.');
+      });
+
+      return card;
+    }
+
+    async function incrementPhotoView(id) {
+      try {
+        const r = await fetch(`${SUPABASE_URL}/rest/v1/community_photos?id=eq.${id}&select=views`, {
+          headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+        });
+        const rows = await r.json();
+        await fetch(`${SUPABASE_URL}/rest/v1/community_photos?id=eq.${id}`, {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ views: (rows[0]?.views || 0) + 1 }),
+        });
+      } catch { /* silent */ }
+    }
+
+    /* ════════════════════════
+       VIDEOS
+    ════════════════════════ */
+    async function loadVideos() {
+      const grid = document.getElementById('video-grid');
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);font-size:0.85rem;">Loading reels…</div>';
+
+      let videos = [];
+      if (CONFIGURED) {
+        try {
+          const res = await fetch(
+            `${SUPABASE_URL}/rest/v1/farm_videos?uploader_id=eq.${session.phone}&order=created_at.desc`,
+            { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+          );
+          if (res.ok) videos = await res.json();
+        } catch { /* silent */ }
+      }
+
+      // Update counts and stats
+      document.getElementById('tc-videos').textContent  = videos.length;
+      document.getElementById('stat-videos').textContent = videos.length;
+
+      const totalVideoViews = videos.reduce((sum, v) => sum + (v.views || 0), 0);
+      updateTotalViews(null, totalVideoViews);
+
+      grid.innerHTML = '';
+
+      if (!videos.length) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column:1/-1">
+            <span class="empty-state-icon">🎬</span>
+            <h3>No reels yet</h3>
+            <p>Share a short video of life at the farm — use the + button on the Reels page.</p>
+            <a href="videos.html" class="btn-go">Go to Reels →</a>
+          </div>`;
+        return;
+      }
+
+      videos.forEach(v => grid.appendChild(makeVideoCard(v)));
+    }
+
+    function makeVideoCard(v) {
+      const card = document.createElement('div');
+      card.className = 'video-card';
+      const date = new Date(v.created_at).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+
+      card.innerHTML = `
+        <div class="video-thumb-wrap">
+          <video src="${esc(v.video_url)}" muted preload="metadata" playsinline></video>
+          <div class="video-play-icon">▶</div>
+          <div class="video-view-overlay">👁 <span class="vv-count">${v.views || 0}</span></div>
+        </div>
+        <div class="video-card-body">
+          <p class="video-card-caption">${esc(v.caption || 'Farm reel')}</p>
+          <div class="video-card-footer">
+            <span class="video-card-date">${date}</span>
+            ${isAdmin || v.uploader_id === session.phone
+              ? `<button class="btn-delete-video" data-id="${v.id}">Remove</button>`
+              : ''}
+          </div>
+        </div>`;
+
+      // Click → go to videos page
+      card.querySelector('.video-thumb-wrap').addEventListener('click', () => {
+        window.location.href = 'videos.html';
+      });
+
+      // Delete
+      const delBtn = card.querySelector('.btn-delete-video');
+      if (delBtn) {
+        delBtn.addEventListener('click', async e => {
+          e.stopPropagation();
+          if (!confirm('Remove this reel?')) return;
+          try {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/farm_videos?id=eq.${v.id}`, {
+              method: 'DELETE',
+              headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+            });
+            if (!res.ok) throw new Error();
+            card.style.transition = 'opacity 0.3s, transform 0.3s';
+            card.style.opacity = '0'; card.style.transform = 'scale(0.92)';
+            setTimeout(() => { card.remove(); recomputeStats(); }, 300);
+            showToast('Reel removed.');
+          } catch { showToast('Could not delete reel.'); }
+        });
+      }
+
+      return card;
+    }
+
+    /* ════════════════════════
+       STATS
+    ════════════════════════ */
+    let _photoViews = 0;
+    let _videoViews = 0;
+
+    function updateTotalViews(photoViews, videoViews) {
+      if (photoViews !== null) _photoViews = photoViews;
+      if (videoViews !== null) _videoViews = videoViews;
+      document.getElementById('stat-views').textContent = _photoViews + _videoViews;
+    }
+
+    function recomputeStats() {
+      const photos = document.querySelectorAll('#photo-grid .photo-card').length;
+      const videos = document.querySelectorAll('#video-grid .video-card').length;
+      document.getElementById('tc-photos').textContent   = photos;
+      document.getElementById('tc-videos').textContent   = videos;
+      document.getElementById('stat-photos').textContent = photos;
+      document.getElementById('stat-videos').textContent = videos;
+      // Recount views
+      let pv = 0;
+      document.querySelectorAll('.pv-count').forEach(el => { pv += parseInt(el.textContent) || 0; });
+      let vv = 0;
+      document.querySelectorAll('.vv-count').forEach(el => { vv += parseInt(el.textContent) || 0; });
+      updateTotalViews(pv, vv);
+    }
+
+    /* ════════════════════════
+       UTILITIES
+    ════════════════════════ */
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+    }
+
+    function esc(str) {
+      return String(str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    document.querySelector('.footer-year').textContent = new Date().getFullYear();
+
+  })();
+  </script>
+
+</body>
+</html>

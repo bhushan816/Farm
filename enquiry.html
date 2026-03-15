@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan Your Visit — Govardhan Farm</title>
+  <meta name="description"
+    content="Get in touch with Govardhan Farm to plan your visit, family gathering, or celebration in Gujarat, India." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://govardhanfarm.com/enquiry.html" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Plan Your Visit — Govardhan Farm" />
+  <meta property="og:description" content="Get in touch to plan your visit, family gathering, or celebration." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/drone-4.jpg" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Plan Your Visit — Govardhan Farm" />
+  <meta name="twitter:image" content="assets/drone-4.jpg" />
+  <!-- Favicon -->
+  <link rel="icon" href="assets/drone-4.jpg" type="image/jpeg" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <noscript>
+    <style>
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important
+      }
+    </style>
+  </noscript>
+  <style>
+    /* ══════════════════════════════════════
+       ENQUIRY PAGE — STYLES
+    ══════════════════════════════════════ */
+
+    /* ── PAGE HERO ── */
+    .enquiry-hero {
+      min-height: 52vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 48px 72px;
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    .enquiry-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/drone-4.jpg');
+      background-size: cover;
+      background-position: center 60%;
+      opacity: 0.35;
+      transform: scale(1.05);
+      transition: transform 8s ease-out;
+    }
+
+    .enquiry-hero-bg.loaded {
+      transform: scale(1);
+    }
+
+    .enquiry-hero-content {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .enquiry-hero-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-family: var(--font-sans);
+    }
+
+    .enquiry-hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 400;
+      color: white;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    .enquiry-hero-sub {
+      margin-top: 24px;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.45);
+      max-width: 420px;
+      line-height: 1.75;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .enquiry-body {
+      background: var(--cream);
+      padding: 80px 48px 120px;
+    }
+
+    .enquiry-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    /* ── LEFT: INFO PANEL ── */
+    .info-panel {
+      position: sticky;
+      top: 100px;
+    }
+
+    .info-block {
+      margin-bottom: 48px;
+    }
+
+    .info-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-block-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      font-family: var(--font-sans);
+    }
+
+    .info-block h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .info-block p {
+      font-size: 0.9rem;
+      color: var(--brown);
+      line-height: 1.75;
+    }
+
+    .info-block a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .info-block a:hover {
+      color: var(--charcoal);
+    }
+
+    .info-divider {
+      width: 32px;
+      height: 1px;
+      background: var(--border);
+      margin: 32px 0;
+    }
+
+    /* Map embed */
+    .map-embed {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      margin-top: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── RIGHT: FORM ── */
+    .form-panel {}
+
+    .form-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+
+    /* Field groups */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-family: var(--font-sans);
+    }
+
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--text);
+      background: white;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .field-group input:focus,
+    .field-group select:focus,
+    .field-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+    }
+
+    .field-group input::placeholder,
+    .field-group textarea::placeholder {
+      color: rgba(58, 54, 48, 0.3);
+    }
+
+    .field-group textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+
+    .field-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8278' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .field-group select option {
+      color: var(--text);
+    }
+
+    /* Occasion chips */
+    .occasion-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      user-select: none;
+      font-family: var(--font-sans);
+    }
+
+    .chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .chip.selected {
+      border-color: var(--accent);
+      background: rgba(139, 115, 85, 0.08);
+      color: var(--accent);
+    }
+
+    .chip-icon {
+      font-size: 0.9rem;
+    }
+
+    /* Guest count slider */
+    .slider-wrap {
+      margin-top: 4px;
+    }
+
+    .slider-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .slider-label-row span {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: var(--font-sans);
+    }
+
+    .slider-value {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 4px;
+      border-radius: 4px;
+      cursor: pointer;
+      accent-color: var(--accent);
+      background: var(--border);
+      border: none;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    input[type="range"]:focus {
+      box-shadow: none;
+      border: none;
+    }
+
+    /* Submit button */
+    .btn-enquire {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      justify-content: center;
+      background: var(--charcoal);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 18px 32px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    .btn-enquire:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(139, 115, 85, 0.3);
+    }
+
+    .btn-enquire:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── SUCCESS STATE ── */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 64px 32px;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .success-state.visible {
+      display: block;
+    }
+
+    .success-icon {
+      font-size: 3rem;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .success-state h3 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+
+    .success-state p {
+      font-size: 0.9rem;
+      color: var(--brown);
+      line-height: 1.75;
+      max-width: 380px;
+      margin: 0 auto 32px;
+    }
+
+    .btn-reset {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      padding: 12px 24px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      background: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-reset:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: var(--charcoal);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      z-index: 9998;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: transform 0.4s var(--ease), opacity 0.4s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ── AUTH GATE MODAL ── */
+    .auth-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(14, 14, 12, 0.7);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .auth-modal-overlay.open {
+      display: flex;
+    }
+
+    .auth-modal {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+      animation: modalIn 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: scale(0.93)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1)
+      }
+    }
+
+    .auth-modal-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .auth-modal h3 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+
+    .auth-modal p {
+      font-size: 0.85rem;
+      color: var(--brown);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .auth-modal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--charcoal);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 32px;
+      width: 100%;
+      justify-content: center;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.25s;
+      margin-bottom: 12px;
+    }
+
+    .auth-modal-btn:hover {
+      background: var(--accent);
+    }
+
+    .auth-modal-dismiss {
+      background: none;
+      border: none;
+      font-size: 0.75rem;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: color 0.2s;
+    }
+
+    .auth-modal-dismiss:hover {
+      color: var(--charcoal);
+    }
+
+    /* ── USER INFO BAR on enquiry ── */
+    .enquiry-user-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 14px 20px;
+      background: rgba(139, 115, 85, 0.06);
+      border: 1px solid rgba(139, 115, 85, 0.15);
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    .enquiry-user-bar.visible {
+      display: flex;
+    }
+
+    .enquiry-user-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .enquiry-user-avatar {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--accent), #c9a84c);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: white;
+      font-size: 0.82rem;
+      font-family: var(--font-sans);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .enquiry-hero {
+        padding: 0 24px 56px;
+        min-height: 40vh;
+      }
+
+      .enquiry-body {
+        padding: 56px 24px 80px;
+      }
+
+      .enquiry-grid {
+        grid-template-columns: 1fr;
+        gap: 56px;
+      }
+
+      .info-panel {
+        position: static;
+      }
+
+      .field-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .occasion-chips {
+        gap: 6px;
+      }
+
+      .chip {
+        padding: 7px 12px;
+        font-size: 0.68rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAV (no active link — page hidden from main nav) ── -->
+  <nav class="nav nav-enquiry" id="main-nav">
+    <a href="index.html" class="nav-logo">Govardhan Farm</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="celebrations.html">Celebrations</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="enquiry-hero">
+    <div class="enquiry-hero-bg" id="hero-bg"></div>
+    <div class="enquiry-hero-content">
+      <p class="enquiry-hero-eyebrow">Get in Touch</p>
+      <h1 class="enquiry-hero-title">Plan Your<br>Visit</h1>
+      <p class="enquiry-hero-sub">
+        Tell us about your occasion and we'll help you create
+        an unforgettable experience at Govardhan Farm.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── BODY ── -->
+  <div class="enquiry-body">
+    <div class="enquiry-grid">
+
+      <!-- ── LEFT: INFO ── -->
+      <aside class="info-panel reveal">
+
+        <div class="info-block">
+          <p class="info-block-label">Location</p>
+          <h3>Govardhan Farm</h3>
+          <p>
+            Between Jamnagar &amp; Rajkot<br>
+            Kathiawar region, Gujarat<br>
+            India — 360 XXX
+          </p>
+        </div>
+
+        <div class="info-divider"></div>
+
+        <div class="info-block">
+          <p class="info-block-label">Coordinates</p>
+          <p>22.512460°N, 70.264592°E</p>
+          <a href="https://maps.google.com/?q=22.512460,70.264592" target="_blank" rel="noopener noreferrer"
+            style="display:inline-block; margin-top:10px;">Open in Google Maps ↗</a>
+        </div>
+
+        <div class="info-divider"></div>
+
+        <div class="info-block">
+          <p class="info-block-label">Farm Size</p>
+          <h3>41,425 sq m</h3>
+          <p>906 m perimeter · Organic farmland · Covered seating · Open grounds</p>
+        </div>
+
+        <div class="info-divider"></div>
+
+        <div class="info-block">
+          <p class="info-block-label">Best Season to Visit</p>
+          <p>October → March for celebrations<br>
+            June → September for lush greenery</p>
+        </div>
+
+        <!-- Embedded Map -->
+        <div class="map-embed">
+          <iframe src="https://maps.google.com/maps?q=22.512460,70.264592&z=14&output=embed" allowfullscreen
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Govardhan Farm location"></iframe>
+        </div>
+
+      </aside>
+
+      <!-- ── RIGHT: FORM ── -->
+      <div class="form-panel reveal reveal-delay-2">
+
+        <!-- User bar (logged in) -->
+        <div class="enquiry-user-bar" id="enquiry-user-bar">
+          <div class="enquiry-user-bar-left">
+            <div class="enquiry-user-avatar" id="enq-avatar">?</div>
+            <div>
+              <div id="enq-name" style="font-size:0.88rem;font-weight:500;color:var(--charcoal);">—</div>
+              <div id="enq-role"
+                style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);">—</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;">
+            <a href="profile.html"
+              style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:underline;text-underline-offset:3px;">My
+              Profile</a>
+            <span style="color:var(--border);">|</span>
+            <button onclick="localStorage.removeItem('gf_session');location.reload();"
+              style="background:none;border:none;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;font-family:var(--font-sans);">Sign
+              Out</button>
+          </div>
+        </div>
+
+        <h2 class="form-title">Send an Enquiry</h2>
+        <p class="form-subtitle">We typically respond within 24 hours.</p>
+
+        <!-- Form -->
+        <div id="enquiry-form">
+
+          <!-- Name row -->
+          <div class="field-row">
+            <div class="field-group">
+              <label for="first-name">First Name *</label>
+              <input type="text" id="first-name" placeholder="Ravi" required aria-required="true" />
+            </div>
+            <div class="field-group">
+              <label for="last-name">Last Name *</label>
+              <input type="text" id="last-name" placeholder="Patel" required aria-required="true" />
+            </div>
+          </div>
+
+          <!-- Contact row -->
+          <div class="field-row">
+            <div class="field-group">
+              <label for="phone">Phone / WhatsApp *</label>
+              <input type="tel" id="phone" placeholder="+91 98765 43210" required aria-required="true"
+                pattern="[0-9+()\s\-]{7,15}" minlength="7" maxlength="18" />
+            </div>
+            <div class="field-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="ravi@example.com" />
+            </div>
+          </div>
+
+          <!-- Occasion chips -->
+          <div class="field-group">
+            <label>Type of Occasion *</label>
+            <div class="occasion-chips" id="occasion-chips" role="group" aria-label="Select occasion type">
+              <div class="chip" data-value="family-reunion" role="checkbox" aria-checked="false" tabindex="0">
+                <span class="chip-icon">👨‍👩‍👧‍👦</span> Family Reunion
+              </div>
+              <div class="chip" data-value="festival" role="checkbox" aria-checked="false" tabindex="0">
+                <span class="chip-icon">🪔</span> Festival
+              </div>
+              <div class="chip" data-value="wedding" role="checkbox" aria-checked="false" tabindex="0">
+                <span class="chip-icon">💍</span> Wedding / Sangeet
+              </div>
+              <div class="chip" data-value="birthday" role="checkbox" aria-checked="false" tabindex="0">
+                <span class="chip-icon">🎂</span> Birthday
+              </div>
+              <div class="chip" data-value="corporate" role="checkbox" aria-checked="false" tabindex="0">
+                <span class="chip-icon">🤝</span> Corporate Outing
+              </div>
+              <div class="chip" data-value="farm-visit" role="checkbox" aria-checked="false" tabindex="0">
+                <span class="chip-icon">🌿</span> Farm Visit
+              </div>
+              <div class="chip" data-value="other" role="checkbox" aria-checked="false" tabindex="0">
+                <span class="chip-icon">✦</span> Other
+              </div>
+            </div>
+          </div>
+
+          <!-- Date + Guests -->
+          <div class="field-row">
+            <div class="field-group">
+              <label for="visit-date">Preferred Date</label>
+              <input type="date" id="visit-date" />
+            </div>
+            <div class="field-group">
+              <label for="guest-count">Approximate Guests</label>
+              <div class="slider-wrap">
+                <div class="slider-label-row">
+                  <span>1</span>
+                  <span class="slider-value" id="guest-display">50</span>
+                  <span>500+</span>
+                </div>
+                <input type="range" id="guest-count" min="1" max="500" value="50" step="5"
+                  aria-label="Number of guests" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="field-group">
+            <label for="message">Tell us about your event</label>
+            <textarea id="message"
+              placeholder="Any specific requirements, activities, or questions you have about the farm…"></textarea>
+          </div>
+
+          <!-- How did you hear -->
+          <div class="field-group">
+            <label for="source">How did you find us?</label>
+            <select id="source">
+              <option value="" disabled selected>Select an option</option>
+              <option value="family-friend">Family / Friend</option>
+              <option value="google">Google Search</option>
+              <option value="instagram">Instagram</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <!-- Submit -->
+          <button class="btn-enquire" id="btn-enquire">
+            <span id="btn-text">Send Enquiry</span>
+            <span class="btn-spinner" id="btn-spinner"></span>
+            <span id="btn-arrow">↗</span>
+          </button>
+          <p class="form-note">
+            Your details are kept private and only used to respond to your enquiry.
+          </p>
+
+        </div>
+
+        <!-- Success state -->
+        <div class="success-state" id="success-state">
+          <span class="success-icon">🌿</span>
+          <h3>Enquiry Sent!</h3>
+          <p>
+            Thank you for reaching out. We'll get back to you within
+            24 hours to discuss your visit to Govardhan Farm.
+          </p>
+          <button class="btn-reset" id="btn-reset">Send Another Enquiry</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer style="background:var(--dark); padding:40px 48px; border-top:1px solid rgba(255,255,255,0.06);">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <a href="index.html" style="font-family:var(--font-serif); color:white; font-size:1rem;">Govardhan Farm</a>
+      <nav style="display:flex; gap:32px;">
+        <a href="index.html" class="footer-link-dark">Home</a>
+        <a href="celebrations.html" class="footer-link-dark">Celebrations</a>
+      </nav>
+      <p style="font-size:0.72rem; color:rgba(255,255,255,0.25);">© <span class="footer-year">2025</span> Govardhan
+        Farm, Gujarat, India</p>
+    </div>
+  </footer>
+
+  <!-- ── AUTH MODAL ── -->
+  <div class="auth-modal-overlay" id="auth-modal-overlay">
+    <div class="auth-modal">
+      <span class="auth-modal-icon">🌿</span>
+      <h3>Sign In to Send Enquiry</h3>
+      <p>Create a free account or sign in with your phone number to send an enquiry to Govardhan Farm.</p>
+      <a href="login.html" class="auth-modal-btn">Sign In / Register →</a>
+      <button class="auth-modal-dismiss" id="auth-modal-dismiss">Maybe later</button>
+    </div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    const SUPABASE_URL = 'https://gwulqutwoburvncpolck.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3dWx1cXR3b2J1cnZuY3BvbGNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxNjM2OTEsImV4cCI6MjA4ODczOTY5MX0.UTroFAmZV5PX5fYZoDwta3I1NX7sfASSKpMdqqh7Z78';
+
+    (function () {
+
+      /* ── Session ── */
+      function getSession() {
+        try {
+          const s = JSON.parse(localStorage.getItem('gf_session'));
+          if (!s) return null;
+          if (Date.now() - s.loginTime > 90 * 24 * 60 * 60 * 1000) {
+            localStorage.removeItem('gf_session'); return null;
+          }
+          return s;
+        } catch { return null; }
+      }
+      const session = getSession();
+      const isLoggedIn = !!session;
+
+      /* ── Auth modal ── */
+      const authOverlay = document.getElementById('auth-modal-overlay');
+      document.getElementById('auth-modal-dismiss').addEventListener('click', () => {
+        authOverlay.classList.remove('open');
+      });
+      authOverlay.addEventListener('click', e => {
+        if (e.target === authOverlay) authOverlay.classList.remove('open');
+      });
+
+      /* ── User bar ── */
+      const userBar = document.getElementById('enquiry-user-bar');
+      if (isLoggedIn) {
+        userBar.classList.add('visible');
+        document.getElementById('enq-name').textContent = session.name || 'Member';
+        document.getElementById('enq-role').textContent = session.role;
+        document.getElementById('enq-avatar').textContent = (session.name || 'M')[0].toUpperCase();
+        // Pre-fill name if available
+        if (session.name) {
+          const parts = session.name.split(' ');
+          const fnEl = document.getElementById('first-name');
+          const lnEl = document.getElementById('last-name');
+          if (fnEl && !fnEl.value) fnEl.value = parts[0] || '';
+          if (lnEl && !lnEl.value) lnEl.value = parts.slice(1).join(' ') || '';
+        }
+        // Pre-fill phone (remove country code prefix)
+        if (session.phone) {
+          const phoneEl = document.getElementById('phone');
+          if (phoneEl && !phoneEl.value) {
+            phoneEl.value = '+' + session.phone;
+          }
+        }
+      }
+
+      /* ── Hero bg load ── */
+      setTimeout(() => document.getElementById('hero-bg').classList.add('loaded'), 100);
+
+      /* ── Set date min to today ── */
+      const visitDate = document.getElementById('visit-date');
+      visitDate.min = new Date().toISOString().split('T')[0];
+
+      /* ── Guest slider ── */
+      const slider = document.getElementById('guest-count');
+      const display = document.getElementById('guest-display');
+      slider.addEventListener('input', () => {
+        display.textContent = slider.value == 500 ? '500+' : slider.value;
+      });
+
+      /* ── Occasion chips ── */
+      let selectedOccasions = [];
+      document.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const val = chip.dataset.value;
+          const checked = chip.getAttribute('aria-checked') !== 'true';
+          chip.classList.toggle('selected', checked);
+          chip.setAttribute('aria-checked', checked);
+          selectedOccasions = checked
+            ? [...selectedOccasions, val]
+            : selectedOccasions.filter(v => v !== val);
+        });
+        chip.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); chip.click(); }
+        });
+      });
+
+      /* ── DOM refs ── */
+      const btnEnquire = document.getElementById('btn-enquire');
+      const btnText = document.getElementById('btn-text');
+      const btnSpinner = document.getElementById('btn-spinner');
+      const btnArrow = document.getElementById('btn-arrow');
+      const form = document.getElementById('enquiry-form');
+      const success = document.getElementById('success-state');
+      const toast = document.getElementById('toast');
+
+      let lastSubmitTime = 0;
+      const SUBMIT_COOLDOWN_MS = 8000;
+      const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const PHONE_RE = /^[0-9+()\s\-]{7,18}$/;
+
+      /* ── Submit ── */
+      btnEnquire.addEventListener('click', async () => {
+
+        // Auth gate — must be logged in
+        if (!isLoggedIn) {
+          authOverlay.classList.add('open');
+          return;
+        }
+
+        const firstName = document.getElementById('first-name').value.trim();
+        const lastName = document.getElementById('last-name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const date = visitDate.value || null;
+        const guests = slider.value == 500 ? '500+' : slider.value;
+        const message = document.getElementById('message').value.trim() || null;
+        const source = document.getElementById('source').value || null;
+
+        if (!firstName) return showToast('Please enter your first name.');
+        if (!lastName) return showToast('Please enter your last name.');
+        if (!phone) return showToast('Please enter your phone number.');
+        if (!PHONE_RE.test(phone)) return showToast('Please enter a valid phone number.');
+        if (email && !EMAIL_RE.test(email)) return showToast('Please enter a valid email address.');
+        if (!selectedOccasions.length) return showToast('Please select at least one occasion type.');
+
+        const now = Date.now();
+        if (now - lastSubmitTime < SUBMIT_COOLDOWN_MS) {
+          const wait = Math.ceil((SUBMIT_COOLDOWN_MS - (now - lastSubmitTime)) / 1000);
+          showToast(`Please wait ${wait}s before resubmitting.`);
+          return;
+        }
+
+        setLoading(true);
+
+        const CONFIGURED = SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY.startsWith('eyJ');
+
+        if (CONFIGURED) {
+          try {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/enquiries`, {
+              method: 'POST',
+              headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal',
+              },
+              body: JSON.stringify({
+                first_name: firstName, last_name: lastName, phone,
+                email: email || null, occasions: selectedOccasions,
+                visit_date: date, guest_count: guests, message, source,
+                submitted_by: session.phone,
+              }),
+            });
+            if (!res.ok) throw new Error(`[${res.status}] ${await res.text()}`);
+            lastSubmitTime = Date.now();
+            showSuccess();
+          } catch (err) {
+            console.error('Supabase error:', err.message);
+            sendMailto(firstName, lastName, phone, email, selectedOccasions, date, guests, message, source);
+            lastSubmitTime = Date.now();
+            showSuccess();
+          }
+        } else {
+          await new Promise(r => setTimeout(r, 700));
+          sendMailto(firstName, lastName, phone, email, selectedOccasions, date, guests, message, source);
+          lastSubmitTime = Date.now();
+          showSuccess();
+        }
+
+        setLoading(false);
+      });
+
+      function sendMailto(fn, ln, ph, em, occ, dt, gu, msg, src) {
+        const label = occ.map(v => v.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())).join(', ');
+        const body = [
+          `Name: ${fn} ${ln}`, `Phone: ${ph}`,
+          em ? `Email: ${em}` : null, `Occasion: ${label}`,
+          dt ? `Date: ${dt}` : null, `Guests: ${gu}`,
+          msg ? `\nMessage:\n${msg}` : null,
+          src ? `\nFound via: ${src}` : null,
+        ].filter(Boolean).join('\n');
+        window.location.href = `mailto:contact@govardhanfarm.com?subject=${encodeURIComponent('Farm Enquiry — ' + label)}&body=${encodeURIComponent(body)}`;
+      }
+
+      function showSuccess() { form.style.display = 'none'; success.classList.add('visible'); }
+
+      function setLoading(on) {
+        btnEnquire.disabled = on;
+        btnText.textContent = on ? 'Sending…' : 'Send Enquiry';
+        btnSpinner.style.display = on ? 'block' : 'none';
+        btnArrow.style.display = on ? 'none' : '';
+      }
+
+      document.getElementById('btn-reset').addEventListener('click', () => {
+        form.style.display = ''; success.classList.remove('visible');
+        ['first-name', 'last-name', 'phone', 'email', 'visit-date', 'message'].forEach(id => {
+          document.getElementById(id).value = '';
+        });
+        document.getElementById('source').value = '';
+        slider.value = 50; display.textContent = '50';
+        selectedOccasions = [];
+        document.querySelectorAll('.chip').forEach(c => {
+          c.classList.remove('selected'); c.setAttribute('aria-checked', 'false');
+        });
+        setLoading(false);
+      });
+
+      let toastTimer;
+      function showToast(msg) {
+        toast.textContent = msg; toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+      }
+
+      const yr = document.querySelector('.footer-year');
+      if (yr) yr.textContent = new Date().getFullYear();
+
+    })();
+  </script>
+</body>
+
+</html>

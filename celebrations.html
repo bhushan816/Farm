@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celebrations — Govardhan Farm</title>
+  <meta name="description" content="Celebrate family reunions, festivals, and special occasions at Govardhan Farm." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://govardhanfarm.com/celebrations.html" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Celebrations — Govardhan Farm" />
+  <meta property="og:description"
+    content="Celebrate family reunions, festivals, and special occasions at Govardhan Farm." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/celebration-2.jpg" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Celebrations — Govardhan Farm" />
+  <meta name="twitter:image" content="assets/celebration-2.jpg" />
+  <!-- Favicon -->
+  <link rel="icon" href="assets/drone-4.jpg" type="image/jpeg" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <noscript>
+    <style>
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important
+      }
+    </style>
+  </noscript>
+  <style>
+    /* ═══════════════════════════════════
+       CELEBRATIONS PAGE — EXTRA STYLES
+    ═══════════════════════════════════ */
+
+    .celebrations-hero .hero-bg {
+      background-image: url('assets/7210279b-91ad-481b-b395-b2419d38482a.jpg');
+      background-position: center 35%;
+    }
+
+    /* ── FEATURED WIDE PHOTO ── */
+    .featured-moment {
+      padding: 0 48px 60px;
+    }
+
+    .featured-frame {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 1400px;
+      margin: 0 auto;
+      aspect-ratio: 21/9;
+    }
+
+    .featured-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 10s ease-out;
+    }
+
+    .featured-frame:hover img {
+      transform: scale(1.03);
+    }
+
+    .featured-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 80px 48px 36px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.62) 0%, transparent 100%);
+    }
+
+    .featured-caption h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      color: white;
+      line-height: 1;
+    }
+
+    .featured-caption p {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+
+    /* ── PHOTO MOSAIC ── */
+    .mosaic-wrap {
+      padding: 0 48px 80px;
+    }
+
+    .mosaic {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .mosaic-cell {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .mosaic-cell.tall {
+      aspect-ratio: 2/3;
+    }
+
+    .mosaic-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease);
+    }
+
+    .mosaic-cell:hover img {
+      transform: scale(1.06);
+    }
+
+    /* ════════════════════════════════════════
+       UPLOAD SECTION
+    ════════════════════════════════════════ */
+    .upload-section {
+      background: var(--cream-mid);
+      padding: 100px 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .upload-section .container {
+      max-width: 1100px;
+    }
+
+    .upload-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .upload-header-left .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .upload-header-left h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.05;
+    }
+
+    .upload-header-right p {
+      font-size: 0.9rem;
+      color: var(--brown);
+      max-width: 280px;
+      line-height: 1.7;
+    }
+
+    /* ── Dropzone ── */
+    .dropzone {
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 56px 32px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.3s, background 0.3s, transform 0.2s;
+      margin-bottom: 20px;
+    }
+
+    .dropzone:hover,
+    .dropzone.dragover {
+      border-color: var(--accent);
+      background: rgba(139, 115, 85, 0.04);
+      transform: scale(1.003);
+    }
+
+    .dropzone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .dropzone-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .dropzone h3 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .dropzone p {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .browse-link {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ── Caption / Visibility bar ── */
+    .caption-bar {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+
+    .caption-bar.visible {
+      display: flex;
+    }
+
+    .caption-bar-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .preview-thumb {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .preview-filename {
+      font-size: 0.8rem;
+      color: var(--muted);
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .caption-bar input[type="text"] {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .caption-bar input[type="text"]:focus {
+      border-color: var(--accent);
+    }
+
+    .caption-bar input[type="text"]::placeholder {
+      color: var(--muted);
+    }
+
+    /* ── Privacy toggle ── */
+    .visibility-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .visibility-toggle {
+      display: flex;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .vis-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border: none;
+      border-radius: 100px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      color: var(--muted);
+      transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+      white-space: nowrap;
+    }
+
+    .vis-btn .vis-icon {
+      font-size: 0.9rem;
+    }
+
+    .vis-btn.active {
+      background: white;
+      color: var(--charcoal);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .vis-btn.active.public-btn {
+      color: #2a7a4b;
+    }
+
+    .vis-btn.active.private-btn {
+      color: var(--brown);
+    }
+
+    .visibility-hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 340px;
+    }
+
+    .visibility-hint strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* action buttons */
+    .caption-bar-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--charcoal);
+      color: white;
+      border: none;
+      border-radius: 100px;
+      padding: 13px 28px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.25s, transform 0.15s;
+    }
+
+    .btn-submit:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-cancel {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 100px;
+      padding: 13px 20px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-cancel:hover {
+      border-color: var(--brown);
+      color: var(--brown);
+    }
+
+    /* upload progress */
+    .upload-progress {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(139, 115, 85, 0.06);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: var(--brown);
+    }
+
+    .upload-progress.visible {
+      display: flex;
+    }
+
+    .progress-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ════════════════════════════════════════
+       GALLERY TABS — Public / Private / All
+    ════════════════════════════════════════ */
+    .gallery-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 20px;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+    }
+
+    .tab-btn.active {
+      color: var(--charcoal);
+      border-bottom-color: var(--accent);
+    }
+
+    .tab-count {
+      background: var(--cream-mid);
+      border-radius: 100px;
+      padding: 2px 8px;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      border: 1px solid var(--border);
+    }
+
+    .tab-btn.active .tab-count {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* supabase setup notice */
+    .setup-notice {
+      display: none;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 20px;
+      background: rgba(255, 193, 7, 0.08);
+      border: 1px solid rgba(255, 193, 7, 0.3);
+      border-radius: 10px;
+      margin-bottom: 28px;
+      font-size: 0.82rem;
+      color: #7a6010;
+      line-height: 1.6;
+    }
+
+    .setup-notice.visible {
+      display: flex;
+    }
+
+    .setup-notice-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .setup-notice a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    /* ── Community grid ── */
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .community-grid:empty::after {
+      content: attr(data-empty);
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 64px 24px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .community-card {
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+      transition: transform 0.35s var(--ease), box-shadow 0.35s;
+      animation: cardIn 0.5s var(--ease) both;
+      position: relative;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .community-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    /* privacy badge on card */
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      backdrop-filter: blur(8px);
+    }
+
+    .card-badge.public {
+      background: rgba(42, 122, 75, 0.85);
+      color: white;
+    }
+
+    .card-badge.private {
+      background: rgba(90, 78, 64, 0.82);
+      color: white;
+    }
+
+    .community-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      cursor: zoom-in;
+      transition: transform 0.6s var(--ease);
+    }
+
+    .community-card:hover .community-card-img {
+      transform: scale(1.04);
+    }
+
+    .community-card-body {
+      padding: 14px 16px 16px;
+    }
+
+    .community-card-caption {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .community-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .community-card-date {
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .btn-delete {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0;
+      opacity: 0;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .community-card:hover .btn-delete {
+      opacity: 1;
+    }
+
+    .btn-delete:hover {
+      color: #c0392b;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      backdrop-filter: blur(8px);
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: 900px;
+      width: 100%;
+      animation: lbIn 0.3s var(--ease) both;
+    }
+
+    @keyframes lbIn {
+      from {
+        opacity: 0;
+        transform: scale(0.93);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .lightbox-inner img {
+      width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .lightbox-caption {
+      margin-top: 16px;
+      text-align: center;
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.65);
+      font-style: italic;
+    }
+
+    .lightbox-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    .lightbox-badge.public {
+      background: rgba(42, 122, 75, 0.7);
+      color: white;
+    }
+
+    .lightbox-badge.private {
+      background: rgba(90, 78, 64, 0.7);
+      color: white;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
+      transform: rotate(90deg);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: var(--charcoal);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      z-index: 9998;
+      pointer-events: none;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: transform 0.4s var(--ease), opacity 0.4s;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ── AUTH GATE ── */
+    .auth-gate {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 56px 32px;
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      margin-bottom: 40px;
+      background: rgba(139, 115, 85, 0.03);
+      gap: 16px;
+    }
+
+    .auth-gate.visible {
+      display: flex;
+    }
+
+    .auth-gate-icon {
+      font-size: 2.2rem;
+    }
+
+    .auth-gate h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .auth-gate p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    .btn-auth-gate {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--charcoal);
+      color: white;
+      border: none;
+      border-radius: 100px;
+      padding: 12px 28px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.15s;
+      margin-top: 4px;
+    }
+
+    .btn-auth-gate:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ── VIEW COUNT BADGE ── */
+    .view-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .featured-moment {
+        padding: 0 24px 48px;
+      }
+
+      .featured-frame {
+        aspect-ratio: 4/3;
+      }
+
+      .mosaic-wrap {
+        padding: 0 24px 60px;
+      }
+
+      .mosaic {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .upload-section {
+        padding: 60px 24px;
+      }
+
+      .upload-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .mosaic {
+        grid-template-columns: 1fr;
+      }
+
+      .community-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .visibility-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="main-nav">
+    <a href="index.html" class="nav-logo">Govardhan Farm</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="celebrations.html" class="active">Celebrations</a></li>
+      <li><a href="videos.html" id="nav-reels" style="display:none;">Reels</a></li>
+      <li><a href="profile.html" id="nav-profile" style="display:none;">My Profile</a></li>
+      <li><a href="login.html" id="nav-login">Members</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="celebrations-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Celebrations</h1>
+      <p class="hero-sub">Moments of Joy &amp; Togetherness</p>
+    </div>
+  </section>
+
+  <!-- ── OUR EVENTS ── -->
+  <section class="events-section">
+    <p class="eyebrow reveal">Our Events</p>
+    <h2 class="events-title reveal reveal-delay-1">Creating Memories Together</h2>
+    <p class="reveal reveal-delay-2"
+      style="max-width:600px; margin:0 auto; color:var(--brown); font-size:1rem; line-height:1.85;">
+      Govardhan Farm has been the backdrop for countless family reunions, festival celebrations,
+      and special occasions. Our open spaces and natural setting create the perfect atmosphere
+      for bringing people together.
+    </p>
+  </section>
+
+  <!-- ── FEATURED WIDE PHOTO ── -->
+  <div class="featured-moment reveal">
+    <div class="featured-frame">
+      <img src="assets/image.png" alt="Community feast at Govardhan Farm" />
+      <div class="featured-caption">
+        <h3>Gather Under Open Skies</h3>
+        <p>Family &nbsp;·&nbsp; Festivals &nbsp;·&nbsp; Feasts</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MOSAIC ── -->
+  <div class="mosaic-wrap">
+    <div class="mosaic-cell reveal reveal-delay-1">
+      <img src="assets/celebration-3.jpg" alt="Marigold fields" loading="lazy" />
+    </div>
+    <div class="mosaic-cell reveal reveal-delay-2">
+      <img src="assets/celebration-4.jpg" alt="Celebrating among the flowers" loading="lazy" />
+    </div>
+  </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       COMMUNITY GALLERY UPLOAD SECTION
+  ════════════════════════════════════════ -->
+  <section class="upload-section">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="upload-header reveal">
+        <div class="upload-header-left">
+          <p class="eyebrow">Community Gallery</p>
+          <h2>Share Your Moments<br>at the Farm</h2>
+        </div>
+        <div class="upload-header-right">
+          <p>Upload your photos. Choose to keep them private — visible only to you — or share them publicly with every
+            visitor.</p>
+        </div>
+      </div>
+
+      <!-- Auth gate (shown when not logged in) -->
+      <div class="auth-gate" id="auth-gate">
+        <span class="auth-gate-icon">🔒</span>
+        <h3>Sign in to Share Photos</h3>
+        <p>Create a free account or sign in with your phone number to upload photos to the community gallery.</p>
+        <a href="login.html" class="btn-auth-gate">Sign In / Register →</a>
+      </div>
+
+      <!-- Logged-in user banner (shown when logged in) -->
+      <div id="user-banner"
+        style="display:none; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:14px 20px; background:rgba(139,115,85,0.07); border:1px solid var(--border); border-radius:12px; margin-bottom:20px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div id="user-avatar-cel"
+            style="width:36px;height:36px;background:linear-gradient(135deg,var(--accent),#c9a84c);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-sans);font-weight:600;color:white;font-size:0.85rem;">
+            ?</div>
+          <div>
+            <div id="user-name-cel" style="font-size:0.88rem;font-weight:500;color:var(--charcoal);">—</div>
+            <div id="user-role-cel"
+              style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);">—</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <a href="profile.html"
+            style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:underline;text-underline-offset:3px;">My
+            Profile</a>
+          <span style="color:var(--border);">|</span>
+          <button onclick="localStorage.removeItem('gf_session');location.reload();"
+            style="background:none;border:none;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;font-family:var(--font-sans);">Sign
+            Out</button>
+        </div>
+      </div>
+
+      <!-- Supabase setup notice (shown if not configured) -->
+      <div class="setup-notice" id="setup-notice">
+        <span class="setup-notice-icon">⚠️</span>
+        <span>
+          <strong>Public sharing needs Supabase.</strong>
+          Open <code>celebrations.html</code>, find <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> near
+          the top of the script, and paste your project credentials.
+          <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">Get a free account →</a>
+          &nbsp;Until then, all photos save privately on this device only.
+        </span>
+      </div>
+
+      <!-- Dropzone -->
+      <div class="reveal">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="file-input" accept="image/*" />
+          <span class="dropzone-icon">📷</span>
+          <h3>Drop your photo here</h3>
+          <p>or <span class="browse-link">browse to upload</span> &nbsp;·&nbsp; JPG, PNG, WEBP &nbsp;·&nbsp; Max 10 MB
+          </p>
+        </div>
+
+        <!-- Caption + visibility + actions -->
+        <div class="caption-bar" id="caption-bar">
+
+          <!-- Row 1: preview + filename -->
+          <div class="caption-bar-top">
+            <img class="preview-thumb" id="preview-thumb" src="" alt="preview" />
+            <span class="preview-filename" id="preview-filename"></span>
+          </div>
+
+          <!-- Row 2: caption input -->
+          <input type="text" id="caption-input" placeholder="Add a caption… (optional)" maxlength="80" />
+
+          <!-- Row 3: visibility toggle + hint -->
+          <div class="visibility-row">
+            <div class="visibility-toggle">
+              <button class="vis-btn private-btn active" id="btn-private" type="button">
+                <span class="vis-icon">🔒</span> Keep Private
+              </button>
+              <button class="vis-btn public-btn" id="btn-public" type="button">
+                <span class="vis-icon">🌍</span> Share Publicly
+              </button>
+            </div>
+            <p class="visibility-hint" id="vis-hint">
+              <strong>Private:</strong> Only visible to you on this device.
+            </p>
+          </div>
+
+          <!-- Row 4: upload progress -->
+          <div class="upload-progress" id="upload-progress">
+            <span class="progress-spinner"></span>
+            <span id="progress-text">Uploading to community gallery…</span>
+          </div>
+
+          <!-- Row 5: action buttons -->
+          <div class="caption-bar-actions">
+            <button class="btn-cancel" id="btn-cancel">Cancel</button>
+            <button class="btn-submit" id="btn-submit">Add to Gallery ✦</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Gallery tabs -->
+      <div class="gallery-tabs">
+        <button class="tab-btn active" data-tab="all">
+          All <span class="tab-count" id="count-all">0</span>
+        </button>
+        <button class="tab-btn" data-tab="public">
+          <span>🌍</span> Public <span class="tab-count" id="count-public">0</span>
+        </button>
+        <button class="tab-btn" data-tab="private">
+          <span>🔒</span> My Photos <span class="tab-count" id="count-private">0</span>
+        </button>
+      </div>
+
+      <!-- Cards grid -->
+      <div class="community-grid" id="community-grid" data-empty="No photos here yet — be the first to share a memory!">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PLAN CTA ── -->
+  <section class="plan-cta">
+    <h2 class="section-title light reveal">Plan Your Celebration</h2>
+    <p class="reveal reveal-delay-1">
+      Whether it's a family reunion, festival celebration, or special occasion,
+      Govardhan Farm provides the perfect setting for your memorable moments.
+    </p>
+    <div class="cta-row reveal reveal-delay-2">
+      <a href="https://maps.google.com/?q=22.512460,70.264592" target="_blank" rel="noopener noreferrer"
+        class="btn-filled">
+        View on Map <span>↗</span>
+      </a>
+      <span class="cta-coords">Location: 22.512460, 70.264592</span>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer style="background:var(--dark); padding:40px 48px; border-top:1px solid rgba(255,255,255,0.06);">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <a href="index.html" style="font-family:var(--font-serif); color:white; font-size:1rem;">Govardhan Farm</a>
+      <nav style="display:flex; gap:32px;">
+        <a href="index.html" class="footer-link-dark">Home</a>
+        <a href="celebrations.html" class="footer-link-dark">Celebrations</a>
+      </nav>
+      <p style="font-size:0.72rem; color:rgba(255,255,255,0.25);">© <span class="footer-year">2025</span> Govardhan
+        Farm, Gujarat, India</p>
+    </div>
+  </footer>
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightbox-close">✕</button>
+      <img src="" alt="" id="lightbox-img" />
+      <div style="text-align:center;">
+        <p class="lightbox-caption" id="lightbox-caption"></p>
+        <span class="lightbox-badge" id="lightbox-badge"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ── SCRIPTS ── -->
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      try {
+        const s = JSON.parse(localStorage.getItem('gf_session'));
+        const ok = s && s.role && (Date.now() - s.loginTime < 90 * 24 * 60 * 60 * 1000);
+        if (ok) {
+          document.getElementById('nav-reels').style.display = '';
+          document.getElementById('nav-profile').style.display = '';
+          document.getElementById('nav-login').style.display = 'none';
+        }
+      } catch { }
+    })();
+  </script>
+  <script>
+    /* ═══════════════════════════════════════════════════════════
+       GOVARDHAN FARM — COMMUNITY GALLERY
+       SETUP: Replace YOUR_SUPABASE_URL and YOUR_SUPABASE_ANON_KEY
+       ⚠️  NEVER use the service_role key here — anon key only.
+    ═══════════════════════════════════════════════════════════ */
+    const SUPABASE_URL = 'https://gwuluqtwoburvncpolck.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3dWx1cXR3b2J1cnZuY3BvbGNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxNjM2OTEsImV4cCI6MjA4ODczOTY5MX0.UTroFAmZV5PX5fYZoDwta3I1NX7sfASSKpMdqqh7Z78';
+
+
+    (function () {
+
+      const STORAGE_KEY = 'govardhan_private_v2';
+      const MAX_SIZE_MB = 10;
+      const ALLOWED_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+      const UPLOAD_COOLDOWN_MS = 8000;
+      const CONFIGURED = SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY.startsWith('eyJ');
+
+      /* ── Session ── */
+      function getSession() {
+        try {
+          const s = JSON.parse(localStorage.getItem('gf_session'));
+          if (!s) return null;
+          if (Date.now() - s.loginTime > 90 * 24 * 60 * 60 * 1000) {
+            localStorage.removeItem('gf_session'); return null;
+          }
+          return s;
+        } catch { return null; }
+      }
+      const session = getSession();
+      const isLoggedIn = !!session;
+
+      /* ── Show/hide auth gate ── */
+      const authGate = document.getElementById('auth-gate');
+      const userBanner = document.getElementById('user-banner');
+      const dropzoneWrap = document.querySelector('.reveal:has(#dropzone)') || document.getElementById('dropzone').closest('.reveal');
+
+      if (isLoggedIn) {
+        authGate.classList.remove('visible');
+        userBanner.style.display = 'flex';
+        document.getElementById('user-name-cel').textContent = session.name || 'Member';
+        document.getElementById('user-role-cel').textContent = session.role;
+        document.getElementById('user-avatar-cel').textContent = (session.name || 'M')[0].toUpperCase();
+      } else {
+        authGate.classList.add('visible');
+        userBanner.style.display = 'none';
+        if (dropzoneWrap) dropzoneWrap.style.display = 'none';
+      }
+
+      let privatePhotos = loadPrivate();
+      let publicPhotos = [];
+      let pendingFile = null;
+      let visibility = 'private';
+      let activeTab = 'all';
+      let lastUploadTime = 0;
+
+      const dropzone = document.getElementById('dropzone');
+      const fileInput = document.getElementById('file-input');
+      const captionBar = document.getElementById('caption-bar');
+      const previewThumb = document.getElementById('preview-thumb');
+      const previewName = document.getElementById('preview-filename');
+      const captionInput = document.getElementById('caption-input');
+      const btnPrivate = document.getElementById('btn-private');
+      const btnPublic = document.getElementById('btn-public');
+      const visHint = document.getElementById('vis-hint');
+      const uploadProgress = document.getElementById('upload-progress');
+      const progressText = document.getElementById('progress-text');
+      const btnSubmit = document.getElementById('btn-submit');
+      const btnCancel = document.getElementById('btn-cancel');
+      const grid = document.getElementById('community-grid');
+      const setupNotice = document.getElementById('setup-notice');
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      const lbCap = document.getElementById('lightbox-caption');
+      const lbBadge = document.getElementById('lightbox-badge');
+      const lbClose = document.getElementById('lightbox-close');
+      const toast = document.getElementById('toast');
+
+      if (!CONFIGURED) setupNotice.classList.add('visible');
+
+      showLoadingSkeleton();
+      fetchPublic().then(() => { renderGrid(); updateCounts(); });
+
+      /* ════════ DRAG & DROP ════════ */
+      if (dropzone) {
+        dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+        dropzone.addEventListener('drop', e => {
+          e.preventDefault(); dropzone.classList.remove('dragover');
+          if (!isLoggedIn) { showToast('Please sign in to upload photos.'); return; }
+          if (e.dataTransfer.files[0]) pick(e.dataTransfer.files[0]);
+        });
+        fileInput && fileInput.addEventListener('change', () => {
+          if (!isLoggedIn) { showToast('Please sign in to upload photos.'); return; }
+          if (fileInput.files[0]) pick(fileInput.files[0]);
+        });
+      }
+
+      function pick(file) {
+        const ext = file.name.split('.').pop().toLowerCase();
+        if (!ALLOWED_EXTS.includes(ext)) return showToast('Only JPG, PNG, WEBP, or GIF files allowed.');
+        if (!file.type.startsWith('image/')) return showToast('Please choose an image file.');
+        if (file.size > MAX_SIZE_MB * 1024 * 1024) return showToast(`File too large — max ${MAX_SIZE_MB} MB.`);
+        const reader = new FileReader();
+        reader.onload = ev => {
+          pendingFile = { dataUrl: ev.target.result, file, name: file.name, ext };
+          previewThumb.src = ev.target.result;
+          previewName.textContent = file.name;
+          captionInput.value = '';
+          setVisibility('private');
+          captionBar.classList.add('visible');
+          captionInput.focus();
+        };
+        reader.readAsDataURL(file);
+      }
+
+      /* ════════ VISIBILITY TOGGLE ════════ */
+      btnPrivate && btnPrivate.addEventListener('click', () => setVisibility('private'));
+      btnPublic && btnPublic.addEventListener('click', () => {
+        if (!CONFIGURED) { showToast('⚠️ Add your Supabase credentials to enable public sharing.'); return; }
+        if (!isLoggedIn) { showToast('Please sign in to share publicly.'); return; }
+        setVisibility('public');
+      });
+
+      function setVisibility(v) {
+        visibility = v;
+        btnPrivate.classList.toggle('active', v === 'private');
+        btnPublic.classList.toggle('active', v === 'public');
+        visHint.textContent = '';
+        const strong = document.createElement('strong');
+        strong.textContent = v === 'private' ? 'Private: ' : 'Public: ';
+        visHint.appendChild(strong);
+        visHint.appendChild(document.createTextNode(
+          v === 'private' ? 'Only visible to you on this device.'
+            : 'Visible to every visitor. Anyone can see this photo.'
+        ));
+      }
+
+      /* ════════ SUBMIT ════════ */
+      btnSubmit && btnSubmit.addEventListener('click', submit);
+      captionInput && captionInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') submit();
+        if (e.key === 'Escape') reset();
+      });
+
+      async function submit() {
+        if (!pendingFile) return;
+        if (!isLoggedIn) { showToast('Please sign in to upload photos.'); return; }
+
+        const now = Date.now();
+        if (now - lastUploadTime < UPLOAD_COOLDOWN_MS) {
+          const wait = Math.ceil((UPLOAD_COOLDOWN_MS - (now - lastUploadTime)) / 1000);
+          showToast(`Please wait ${wait}s before uploading again.`);
+          return;
+        }
+
+        const caption = captionInput.value.trim() || 'A memory at Govardhan Farm';
+        const date = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+
+        if (visibility === 'private') {
+          const photo = {
+            id: Date.now(), dataUrl: pendingFile.dataUrl,
+            caption, date, vis: 'private',
+            uploader_name: session.name, uploader_phone: session.phone,
+          };
+          privatePhotos.unshift(photo);
+          savePrivate();
+          lastUploadTime = Date.now();
+          renderGrid(); updateCounts(); reset();
+          showToast('🔒 Photo saved privately on this device.');
+
+        } else {
+          btnSubmit.disabled = true;
+          uploadProgress.classList.add('visible');
+          progressText.textContent = 'Uploading image…';
+
+          try {
+            const filename = `photo_${Date.now()}.${pendingFile.ext}`;
+            const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/gallery/${filename}`, {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Content-Type': pendingFile.file.type || 'image/jpeg',
+                'x-upsert': 'true',
+              },
+              body: pendingFile.file,
+            });
+            if (!uploadRes.ok) {
+              const errText = await uploadRes.text();
+              throw new Error(`Storage upload failed [${uploadRes.status}]: ${errText}`);
+            }
+
+            const imageUrl = `${SUPABASE_URL}/storage/v1/object/public/gallery/${filename}`;
+            progressText.textContent = 'Saving to gallery…';
+
+            const dbRes = await fetch(`${SUPABASE_URL}/rest/v1/community_photos`, {
+              method: 'POST',
+              headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=representation',
+              },
+              body: JSON.stringify({
+                image_url: imageUrl,
+                caption,
+                uploader_phone: session.phone,
+                uploader_name: session.name,
+                views: 0,
+              }),
+            });
+            if (!dbRes.ok) {
+              const errText = await dbRes.text();
+              throw new Error(`DB insert failed [${dbRes.status}]: ${errText}`);
+            }
+
+            const saved = await dbRes.json();
+            const row = Array.isArray(saved) ? saved[0] : saved;
+            publicPhotos.unshift({
+              id: row.id, imageUrl: row.image_url, caption: row.caption,
+              date, vis: 'public', views: 0,
+              uploader_name: row.uploader_name, uploader_phone: row.uploader_phone,
+            });
+
+            lastUploadTime = Date.now();
+            renderGrid(); updateCounts(); reset();
+            showToast('🌍 Photo shared publicly!');
+
+          } catch (err) {
+            console.error('Upload error:', err.message);
+            showToast(`Upload failed: ${err.message}`);
+          } finally {
+            btnSubmit.disabled = false;
+            uploadProgress.classList.remove('visible');
+          }
+        }
+      }
+
+      btnCancel && btnCancel.addEventListener('click', reset);
+      function reset() {
+        pendingFile = null;
+        if (fileInput) fileInput.value = '';
+        captionBar.classList.remove('visible');
+        uploadProgress.classList.remove('visible');
+        btnSubmit.disabled = false;
+        previewThumb.src = '';
+      }
+
+      /* ════════ FETCH PUBLIC + INCREMENT VIEWS ════════ */
+      async function fetchPublic() {
+        if (!CONFIGURED) return;
+        try {
+          const res = await fetch(
+            `${SUPABASE_URL}/rest/v1/community_photos?order=created_at.desc&limit=100`,
+            { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+          );
+          if (!res.ok) return;
+          const rows = await res.json();
+          publicPhotos = rows.map(r => ({
+            id: r.id, imageUrl: r.image_url, caption: r.caption,
+            date: new Date(r.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
+            vis: 'public', views: r.views || 0,
+            uploader_name: r.uploader_name, uploader_phone: r.uploader_phone,
+          }));
+        } catch { /* silent */ }
+      }
+
+      async function incrementView(id) {
+        if (!CONFIGURED) return;
+        try {
+          // Get current views first, then increment
+          const r = await fetch(`${SUPABASE_URL}/rest/v1/community_photos?id=eq.${id}&select=views`, {
+            headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+          });
+          const rows = await r.json();
+          const currentViews = rows[0]?.views || 0;
+          await fetch(`${SUPABASE_URL}/rest/v1/community_photos?id=eq.${id}`, {
+            method: 'PATCH',
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ views: currentViews + 1 }),
+          });
+        } catch { /* silent */ }
+      }
+
+      /* ════════ TABS ════════ */
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeTab = btn.dataset.tab;
+          renderGrid();
+        });
+      });
+
+      /* ════════ LOADING SKELETON ════════ */
+      function showLoadingSkeleton() {
+        grid.innerHTML = '';
+        for (let i = 0; i < 3; i++) {
+          const sk = document.createElement('div');
+          sk.style.cssText = 'border-radius:12px;overflow:hidden;background:#ece6da;';
+          sk.innerHTML = '<div style="aspect-ratio:4/3;background:linear-gradient(90deg,#e8e2d9 25%,#f2ede3 50%,#e8e2d9 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;"></div><div style="padding:14px 16px;"><div style="height:12px;background:#e0d9ce;border-radius:6px;margin-bottom:8px;"></div><div style="height:10px;background:#e8e2d9;border-radius:6px;width:60%;"></div></div>';
+          grid.appendChild(sk);
+        }
+        if (!document.getElementById('shimmer-style')) {
+          const s = document.createElement('style');
+          s.id = 'shimmer-style';
+          s.textContent = '@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}';
+          document.head.appendChild(s);
+        }
+      }
+
+      /* ════════ RENDER GRID ════════ */
+      function renderGrid() {
+        let photos = activeTab === 'all' ? [...publicPhotos, ...privatePhotos]
+          : activeTab === 'public' ? [...publicPhotos]
+            : [...privatePhotos];
+        photos.sort((a, b) => (b.id > a.id ? 1 : -1));
+        grid.innerHTML = '';
+        grid.dataset.empty = {
+          all: 'No photos yet — be the first to share a memory!',
+          public: 'No public photos yet — share yours with the community!',
+          private: 'No private photos yet — upload one just for yourself.',
+        }[activeTab];
+        photos.forEach(p => grid.appendChild(makeCard(p)));
+      }
+
+      function makeCard(p) {
+        const isPublic = p.vis === 'public';
+        const src = isPublic ? p.imageUrl : p.dataUrl;
+        const myPhoto = isLoggedIn && p.uploader_phone === session.phone;
+        const card = document.createElement('div');
+        card.className = 'community-card';
+        card.innerHTML = `
+        <span class="card-badge ${isPublic ? 'public' : 'private'}">${isPublic ? '🌍 Public' : '🔒 Private'}</span>
+        <img class="community-card-img" src="${esc(src)}" alt="${esc(p.caption)}" loading="lazy" />
+        <div class="community-card-body">
+          <p class="community-card-caption">${esc(p.caption)}</p>
+          <div class="community-card-meta">
+            <span class="community-card-date">${esc(p.date)}</span>
+            <div style="display:flex;align-items:center;gap:12px;">
+              ${isPublic ? `<span class="view-badge">👁 <span class="view-count-${p.id}">${p.views || 0}</span></span>` : ''}
+              ${(myPhoto || (isLoggedIn && session.role === 'admin')) ? `<button class="btn-delete" aria-label="Remove photo">Remove</button>` : ''}
+            </div>
+          </div>
+          ${p.uploader_name ? `<div style="font-size:0.65rem;color:var(--muted);margin-top:6px;letter-spacing:0.04em;">by ${esc(p.uploader_name)}</div>` : ''}
+        </div>`;
+
+        card.querySelector('.community-card-img').addEventListener('click', () => {
+          lbImg.src = src; lbCap.textContent = p.caption;
+          lbBadge.textContent = isPublic ? '🌍 Public' : '🔒 Private';
+          lbBadge.className = `lightbox-badge ${isPublic ? 'public' : 'private'}`;
+          lightbox.classList.add('open');
+          document.body.style.overflow = 'hidden';
+          // Increment view count
+          if (isPublic && CONFIGURED) {
+            incrementView(p.id);
+            const vc = document.querySelector(`.view-count-${p.id}`);
+            if (vc) vc.textContent = (parseInt(vc.textContent) || 0) + 1;
+          }
+        });
+
+        const delBtn = card.querySelector('.btn-delete');
+        if (delBtn) {
+          delBtn.addEventListener('click', async e => {
+            e.stopPropagation();
+            if (isPublic && CONFIGURED) {
+              try {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/community_photos?id=eq.${p.id}`, {
+                  method: 'DELETE',
+                  headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+                });
+                if (!res.ok) throw new Error();
+                publicPhotos = publicPhotos.filter(x => x.id !== p.id);
+              } catch { showToast('Could not delete from server.'); return; }
+            } else {
+              privatePhotos = privatePhotos.filter(x => x.id !== p.id);
+              savePrivate();
+            }
+            card.style.transition = 'opacity .3s, transform .3s';
+            card.style.opacity = '0'; card.style.transform = 'scale(0.9)';
+            setTimeout(() => { renderGrid(); updateCounts(); showToast('Photo removed.'); }, 300);
+          });
+        }
+        return card;
+      }
+
+      /* ════════ COUNTS ════════ */
+      function updateCounts() {
+        document.getElementById('count-all').textContent = publicPhotos.length + privatePhotos.length;
+        document.getElementById('count-public').textContent = publicPhotos.length;
+        document.getElementById('count-private').textContent = privatePhotos.length;
+      }
+
+      /* ════════ LIGHTBOX ════════ */
+      lbClose.addEventListener('click', closeLB);
+      lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+      function closeLB() {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(() => { lbImg.src = ''; }, 300);
+      }
+
+      /* ════════ UTILITIES ════════ */
+      let toastTimer;
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 3400);
+      }
+
+      function loadPrivate() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
+      }
+      function savePrivate() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(privatePhotos)); }
+        catch {
+          showToast('Storage full — oldest private photo removed to make space.');
+          while (privatePhotos.length > 1) {
+            privatePhotos.pop();
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(privatePhotos)); break; } catch { }
+          }
+          renderGrid(); updateCounts();
+        }
+      }
+
+      function esc(str) {
+        return String(str)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      const yr = document.querySelector('.footer-year');
+      if (yr) yr.textContent = new Date().getFullYear();
+
+    })();
+  </script>
+</body>
+
+</html>
