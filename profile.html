@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Profile — Govardhan Farm</title>
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="icon" href="assets/drone-4.jpg" type="image/jpeg" />
+  <link rel="icon" href="assets/drone-4.webp" type="image/jpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+Garamond:ital,wght@1,300&family=Jost:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
@@ -93,7 +93,7 @@
     .profile-hero::before {
       content: '';
       position: absolute; inset: 0;
-      background-image: url('assets/drone-3.jpg');
+      background-image: url('assets/drone-3.webp');
       background-size: cover;
       background-position: center 40%;
       opacity: 0.18;
@@ -128,6 +128,118 @@
       color: white; line-height: 1.2;
       margin-bottom: 8px;
     }
+
+    /* Edit Profile button */
+    .btn-edit-profile {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-family: var(--font-sans);
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-edit-profile:hover { background: rgba(255,255,255,0.14); color: white; }
+
+    /* Edit Profile Modal */
+    .edit-modal-overlay {
+      position: fixed; inset: 0; z-index: 600;
+      background: rgba(10,10,8,0.72);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .edit-modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .edit-modal {
+      background: white; border-radius: 20px;
+      padding: 40px 36px; width: 100%; max-width: 400px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.25);
+      transform: translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .edit-modal-overlay.open .edit-modal { transform: translateY(0); }
+    .edit-modal-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem; font-weight: 400;
+      color: var(--charcoal); margin-bottom: 6px;
+    }
+    .edit-modal-sub {
+      font-size: 0.8rem; color: var(--muted);
+      margin-bottom: 28px; line-height: 1.6;
+    }
+    .edit-field { margin-bottom: 18px; }
+    .edit-field label {
+      display: block; font-size: 0.63rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 7px;
+    }
+    .edit-field input {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-family: var(--font-sans); font-size: 0.95rem;
+      color: var(--text); outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .edit-field input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(139,115,85,0.1);
+    }
+    .edit-field .input-prefix-wrap {
+      position: relative;
+    }
+    .edit-field .input-at {
+      position: absolute; left: 14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent); font-family: var(--font-mono);
+      font-size: 1rem; pointer-events: none;
+    }
+    .edit-field .input-prefix-wrap input { padding-left: 28px; }
+    .edit-field .field-hint {
+      font-size: 0.62rem; color: var(--muted);
+      margin-top: 5px; line-height: 1.5;
+    }
+    .edit-modal-status {
+      font-size: 0.78rem; padding: 10px 14px;
+      border-radius: 8px; margin-bottom: 16px;
+      display: none; line-height: 1.5; align-items: center; gap: 10px;
+    }
+    .edit-modal-status.error   { display: block; background: rgba(192,57,43,0.08); color: #c0392b; border: 1px solid rgba(192,57,43,0.2); }
+    .edit-modal-status.success { display: block; background: rgba(39,174,96,0.08); color: #27ae60; border: 1px solid rgba(39,174,96,0.2); }
+    .edit-modal-status.loading { display: flex; background: rgba(0,0,0,0.04); color: var(--muted); border: 1px solid var(--border); }
+    .edit-spinner {
+      width: 13px; height: 13px; flex-shrink: 0;
+      border: 2px solid rgba(0,0,0,0.1);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .edit-modal-btns { display: flex; gap: 12px; margin-top: 20px; }
+    .btn-edit-cancel {
+      flex: 1; padding: 13px;
+      background: var(--cream-mid); border: 1px solid var(--border);
+      border-radius: 12px; font-family: var(--font-sans);
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); cursor: pointer; transition: background 0.2s;
+    }
+    .btn-edit-cancel:hover { background: var(--cream); }
+    .btn-edit-save {
+      flex: 2; padding: 13px;
+      background: var(--charcoal); border: none;
+      border-radius: 12px; font-family: var(--font-sans);
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: white; cursor: pointer; transition: background 0.2s, opacity 0.2s;
+    }
+    .btn-edit-save:hover:not(:disabled) { background: var(--accent); }
+    .btn-edit-save:disabled { opacity: 0.45; cursor: not-allowed; }
     .profile-meta {
       display: flex; align-items: center; gap: 16px;
       flex-wrap: wrap;
@@ -204,6 +316,29 @@
       font-weight: 500;
     }
     .tab-btn.active .tab-count { background: rgba(139,115,85,0.15); color: var(--accent); }
+
+    /* Sub tabs — Photos/Videos within Public or Private */
+    .subtabs-bar {
+      background: var(--cream-mid);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: calc(var(--nav-h) + 54px); z-index: 49;
+    }
+    .subtab-btn {
+      padding: 12px 20px;
+      background: none; border: none;
+      font-family: var(--font-sans);
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted); cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .subtab-btn:hover { color: var(--text); }
+    .subtab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .subtab-btn.active .tab-count { background: rgba(139,115,85,0.15); color: var(--accent); }
 
     /* ════════════════════════════════════
        CONTENT AREA
@@ -512,6 +647,80 @@
       .photo-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
       .video-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
     }
+
+    /* ── MOBILE BOTTOM NAV ── */
+    @media (max-width: 640px) {
+      body { padding-bottom: 64px; }
+      .bottom-nav {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-around;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 9999;
+        background: rgba(242,237,227,0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(139,115,85,0.12);
+        padding: 6px 4px;
+        box-shadow: 0 -4px 16px rgba(58,54,48,0.08);
+      }
+      .bnav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        flex: 1;
+        border: none;
+        background: none;
+        cursor: pointer;
+        padding: 4px 2px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: rgba(90,78,64,0.55);
+        -webkit-tap-highlight-color: transparent;
+        position: relative;
+        font-family: var(--font-sans);
+        transition: color 0.2s, transform 0.15s;
+      }
+      .bnav-item:active { transform: scale(0.9); }
+      .bnav-icon {
+        width: 36px; height: 32px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 10px;
+      }
+      .bnav-icon svg {
+        width: 20px !important;
+        height: 20px !important;
+        max-width: 20px !important;
+        max-height: 20px !important;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.6;
+        display: block;
+      }
+      .bnav-label {
+        font-size: 0.55rem;
+        letter-spacing: 0.04em;
+        font-weight: 500;
+        white-space: nowrap;
+        color: inherit;
+      }
+      .bnav-item.active { color: var(--accent); }
+      .bnav-item.active .bnav-icon { background: rgba(139,115,85,0.1); }
+      .bnav-item.active .bnav-label { font-weight: 600; }
+      .bnav-item.active::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 50%;
+        transform: translateX(-50%);
+        width: 20px; height: 2px;
+        background: var(--accent);
+        border-radius: 0 0 2px 2px;
+      }
+      .bnav-item.locked { opacity: 0.35; }
+    }
   </style>
 </head>
 <body>
@@ -522,6 +731,8 @@
     <div class="nav-links">
       <a href="index.html" class="hide-sm">Home</a>
       <a href="celebrations.html" class="hide-sm">Celebrations</a>
+      <a href="enquiry.html" class="hide-sm">About Us</a>
+      <a href="community.html" class="hide-sm">Community</a>
       <a href="videos.html" class="hide-sm">Reels</a>
       <a href="profile.html" class="active">Profile</a>
       <button class="btn-logout-nav" id="btn-logout">Sign Out</button>
@@ -535,11 +746,13 @@
         <div class="profile-avatar" id="profile-avatar">?</div>
         <div class="profile-info">
           <h1 class="profile-name" id="profile-name">—</h1>
+          <div style="font-size:0.82rem;color:var(--gold);font-family:var(--font-mono);margin-bottom:8px;letter-spacing:0.04em;" id="profile-displayname"></div>
           <div class="profile-meta">
             <span class="profile-phone" id="profile-phone">—</span>
             <span class="profile-role-badge" id="profile-role-badge">—</span>
             <span class="profile-joined" id="profile-joined"></span>
           </div>
+          <button class="btn-edit-profile" id="btn-edit-profile">✏️ Edit Profile</button>
         </div>
       </div>
       <div class="profile-stats">
@@ -555,17 +768,33 @@
           <span class="stat-num" id="stat-views">—</span>
           <span class="stat-label">Total Views</span>
         </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat-likes">—</span>
+          <span class="stat-label">Total Likes</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── TABS ── -->
+  <!-- ── MAIN TABS: PUBLIC / PRIVATE ── -->
   <div class="tabs-bar">
     <div class="tabs-inner">
-      <button class="tab-btn active" data-tab="photos">
+      <button class="tab-btn active" data-vistab="public">
+        🌍 Public <span class="tab-count" id="tc-public">0</span>
+      </button>
+      <button class="tab-btn" data-vistab="private">
+        🔒 Private <span class="tab-count" id="tc-private">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── SUB TABS: PHOTOS / VIDEOS ── -->
+  <div class="subtabs-bar">
+    <div class="tabs-inner">
+      <button class="subtab-btn active" data-tab="photos">
         📷 Photos <span class="tab-count" id="tc-photos">0</span>
       </button>
-      <button class="tab-btn" data-tab="videos">
+      <button class="subtab-btn" data-tab="videos">
         🎬 Reels <span class="tab-count" id="tc-videos">0</span>
       </button>
     </div>
@@ -574,21 +803,28 @@
   <!-- ── MAIN CONTENT ── -->
   <main class="content">
 
-    <!-- Photos panel -->
-    <div class="panel active" id="panel-photos">
-      <div class="photo-grid" id="photo-grid">
-        <!-- Skeletons shown while loading -->
+    <!-- Public Photos panel -->
+    <div class="panel active" id="panel-public-photos">
+      <div class="photo-grid" id="public-photo-grid">
         <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
         <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
         <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
       </div>
     </div>
 
-    <!-- Videos panel -->
-    <div class="panel" id="panel-videos">
-      <div class="video-grid" id="video-grid">
-        <!-- Loaded by JS -->
-      </div>
+    <!-- Public Videos panel -->
+    <div class="panel" id="panel-public-videos">
+      <div class="video-grid" id="public-video-grid"></div>
+    </div>
+
+    <!-- Private Photos panel -->
+    <div class="panel" id="panel-private-photos" style="display:none;">
+      <div class="photo-grid" id="private-photo-grid"></div>
+    </div>
+
+    <!-- Private Videos panel (private videos don't exist yet, but kept for symmetry) -->
+    <div class="panel" id="panel-private-videos" style="display:none;">
+      <div class="video-grid" id="private-video-grid"></div>
     </div>
 
   </main>
@@ -598,6 +834,35 @@
     <button class="lightbox-close" id="lb-close">✕</button>
     <img id="lb-img" src="" alt="" />
     <div class="lightbox-caption" id="lb-caption"></div>
+  </div>
+
+  <!-- ── EDIT PROFILE MODAL ── -->
+  <div class="edit-modal-overlay" id="edit-modal-overlay">
+    <div class="edit-modal">
+      <h3 class="edit-modal-title">Edit Profile</h3>
+      <p class="edit-modal-sub">Your full name is private. Display name appears publicly on your photos and reels.</p>
+
+      <div class="edit-field">
+        <label>Full Name <span style="font-size:0.58rem;color:rgba(138,130,120,0.5);text-transform:none;">(private)</span></label>
+        <input type="text" id="edit-fullname" placeholder="Ravi Patel" maxlength="60" autocomplete="name" />
+      </div>
+
+      <div class="edit-field">
+        <label>Display Name <span style="font-size:0.58rem;color:rgba(138,130,120,0.5);text-transform:none;">(public — shown on posts)</span></label>
+        <div class="input-prefix-wrap">
+          <span class="input-at">@</span>
+          <input type="text" id="edit-displayname" placeholder="ravifarm" maxlength="24" autocomplete="nickname" />
+        </div>
+        <p class="field-hint">Letters, numbers, underscores only. No spaces.</p>
+      </div>
+
+      <div class="edit-modal-status" id="edit-status"></div>
+
+      <div class="edit-modal-btns">
+        <button class="btn-edit-cancel" id="btn-edit-cancel">Cancel</button>
+        <button class="btn-edit-save"   id="btn-edit-save">Save Changes</button>
+      </div>
+    </div>
   </div>
 
   <!-- ── TOAST ── -->
@@ -645,6 +910,10 @@
     document.getElementById('profile-name').textContent   = session.name || 'Farm Member';
     document.getElementById('profile-phone').textContent  = '+' + session.phone;
 
+    /* Show @displayname below full name */
+    const displayEl = document.getElementById('profile-displayname');
+    if (displayEl) displayEl.textContent = session.displayName ? '@' + session.displayName : '';
+
     const roleBadge = document.getElementById('profile-role-badge');
     roleBadge.textContent = session.role;
     roleBadge.className   = `profile-role-badge ${session.role}`;
@@ -655,15 +924,52 @@
       window.location.href = 'login.html';
     });
 
-    /* ── Tabs ── */
+    /* ── Tabs: Public/Private + Photos/Videos ── */
+    let currentVisTab = 'public';
+    let currentSubTab = 'photos';
+
+    function showPanel() {
+      document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
+      const id = `panel-${currentVisTab}-${currentSubTab}`;
+      const el = document.getElementById(id);
+      if (el) { el.style.display = 'block'; el.classList.add('active'); }
+
+      // Update sub-tab counts based on which vis-tab is active
+      const photoCount = currentVisTab === 'public'
+        ? (window._publicPhotoCount || 0)
+        : document.querySelectorAll('#private-photo-grid .photo-card').length;
+      const videoCount = currentVisTab === 'public'
+        ? (window._publicVideoCount || 0)
+        : 0;
+      document.getElementById('tc-photos').textContent = photoCount;
+      document.getElementById('tc-videos').textContent = videoCount;
+    }
+
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
-        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+        currentVisTab = btn.dataset.vistab;
+        showPanel();
       });
     });
+
+    document.querySelectorAll('.subtab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentSubTab = btn.dataset.tab;
+        showPanel();
+      });
+    });
+
+    showPanel(); // show public photos by default
+
+    function updatePublicTabCount() {
+      const photos = window._publicPhotoCount || 0;
+      const videos = window._publicVideoCount || 0;
+      document.getElementById('tc-public').textContent = photos + videos;
+    }
 
     /* ── Lightbox ── */
     const lightbox = document.getElementById('lightbox');
@@ -692,7 +998,8 @@
        PHOTOS
     ════════════════════════ */
     async function loadPhotos() {
-      const grid = document.getElementById('photo-grid');
+      const pubGrid = document.getElementById('public-photo-grid');
+      const privGrid = document.getElementById('private-photo-grid');
       let publicPhotos  = [];
       let privatePhotos = [];
 
@@ -708,10 +1015,13 @@
             publicPhotos = rows.map(r => ({
               id: r.id, src: r.image_url, caption: r.caption || 'A memory at Govardhan Farm',
               date: new Date(r.created_at).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }),
-              views: r.views || 0, vis: 'public',
+              views: r.views || 0, like_count: r.like_count || 0, liked_by: r.liked_by || [],
+              vis: 'public',
             }));
+          } else {
+            console.error('Failed to load public photos:', res.status, await res.text());
           }
-        } catch { /* silent */ }
+        } catch (e) { console.error('Photo fetch error:', e); }
       }
 
       // Load private photos from localStorage
@@ -723,35 +1033,51 @@
             id: p.id, src: p.dataUrl, caption: p.caption || 'A memory',
             date: p.date || '—', views: 0, vis: 'private', localId: p.id,
           }));
-      } catch { /* silent */ }
+      } catch (e) { console.error('Private photo load error:', e); }
 
-      const all = [...publicPhotos, ...privatePhotos];
-      all.sort((a, b) => b.id > a.id ? 1 : -1);
+      publicPhotos.sort((a, b) => b.id > a.id ? 1 : -1);
+      privatePhotos.sort((a, b) => (b.id > a.id ? 1 : -1));
 
       // Update tab counts and stats
-      document.getElementById('tc-photos').textContent  = all.length;
-      document.getElementById('stat-photos').textContent = all.length;
+      document.getElementById('tc-private').textContent = privatePhotos.length;
+      document.getElementById('tc-photos').textContent  = currentVisTab === 'public' ? publicPhotos.length : privatePhotos.length;
+      document.getElementById('stat-photos').textContent = publicPhotos.length + privatePhotos.length;
+      window._publicPhotoCount = publicPhotos.length;
+      updatePublicTabCount();
 
       const totalPhotoViews = publicPhotos.reduce((sum, p) => sum + (p.views || 0), 0);
+      const totalPhotoLikes = publicPhotos.reduce((sum, p) => sum + (p.like_count || 0), 0);
 
-      // Render
-      grid.innerHTML = '';
-
-      if (!all.length) {
-        grid.innerHTML = `
+      // Render public grid
+      pubGrid.innerHTML = '';
+      if (!publicPhotos.length) {
+        pubGrid.innerHTML = `
           <div class="empty-state" style="grid-column:1/-1">
             <span class="empty-state-icon">📷</span>
-            <h3>No photos yet</h3>
-            <p>Upload your first photo on the Celebrations page and share it with the community.</p>
+            <h3>No public photos yet</h3>
+            <p>Upload a photo on the Celebrations page and choose "Public" to share it with everyone.</p>
             <a href="celebrations.html" class="btn-go">Go to Gallery →</a>
           </div>`;
-        return;
+      } else {
+        publicPhotos.forEach(p => pubGrid.appendChild(makePhotoCard(p)));
       }
 
-      all.forEach(p => grid.appendChild(makePhotoCard(p)));
+      // Render private grid
+      privGrid.innerHTML = '';
+      if (!privatePhotos.length) {
+        privGrid.innerHTML = `
+          <div class="empty-state" style="grid-column:1/-1">
+            <span class="empty-state-icon">🔒</span>
+            <h3>No private photos yet</h3>
+            <p>Photos you upload as "Private" on the Celebrations page stay only on this device.</p>
+            <a href="celebrations.html" class="btn-go">Go to Gallery →</a>
+          </div>`;
+      } else {
+        privatePhotos.forEach(p => privGrid.appendChild(makePhotoCard(p)));
+      }
 
-      // Update total views (photos + videos combined later)
-      updateTotalViews(totalPhotoViews, 0);
+      updateTotalViews(totalPhotoViews, null, totalPhotoLikes, null);
+      showPanel();
     }
 
     function makePhotoCard(p) {
@@ -764,10 +1090,12 @@
           ${p.vis === 'public' ? `
           <div class="photo-view-overlay">
             👁 <span class="pv-count" data-id="${p.id}">${p.views}</span>
+            &nbsp;·&nbsp; ❤️ ${p.like_count || 0}
           </div>` : ''}
         </div>
         <div class="photo-card-body">
           <p class="photo-card-caption">${esc(p.caption)}</p>
+          <div style="font-size:0.65rem;color:var(--muted);margin-bottom:8px;font-family:var(--font-mono);">📷 @${esc(session.displayName || session.name || 'you')}</div>
           <div class="photo-card-footer">
             <span class="photo-card-date">${esc(p.date)}</span>
             <button class="btn-delete-card" data-id="${p.id}" data-vis="${p.vis}" data-local="${p.localId || ''}">Remove</button>
@@ -831,10 +1159,10 @@
     }
 
     /* ════════════════════════
-       VIDEOS
+       VIDEOS  (all reels are public — no private video upload exists)
     ════════════════════════ */
     async function loadVideos() {
-      const grid = document.getElementById('video-grid');
+      const grid = document.getElementById('public-video-grid');
       grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);font-size:0.85rem;">Loading reels…</div>';
 
       let videos = [];
@@ -844,16 +1172,33 @@
             `${SUPABASE_URL}/rest/v1/farm_videos?uploader_id=eq.${session.phone}&order=created_at.desc`,
             { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
           );
-          if (res.ok) videos = await res.json();
-        } catch { /* silent */ }
+          if (res.ok) {
+            videos = await res.json();
+          } else {
+            console.error('Failed to load videos:', res.status, await res.text());
+          }
+        } catch (e) { console.error('Video fetch error:', e); }
       }
 
       // Update counts and stats
-      document.getElementById('tc-videos').textContent  = videos.length;
+      document.getElementById('tc-videos').textContent  = currentVisTab === 'public' ? videos.length : 0;
       document.getElementById('stat-videos').textContent = videos.length;
+      window._publicVideoCount = videos.length;
+      updatePublicTabCount();
 
       const totalVideoViews = videos.reduce((sum, v) => sum + (v.views || 0), 0);
-      updateTotalViews(null, totalVideoViews);
+      const totalVideoLikes = videos.reduce((sum, v) => sum + (v.like_count || 0), 0);
+      updateTotalViews(null, totalVideoViews, null, totalVideoLikes);
+      showPanel();
+
+      // Private video panel — always empty (no private video upload exists)
+      const privGrid = document.getElementById('private-video-grid');
+      privGrid.innerHTML = `
+        <div class="empty-state" style="grid-column:1/-1">
+          <span class="empty-state-icon">🔒</span>
+          <h3>No private reels</h3>
+          <p>All reels uploaded on the Reels page are public by design — there's no private video option.</p>
+        </div>`;
 
       grid.innerHTML = '';
 
@@ -878,12 +1223,12 @@
 
       card.innerHTML = `
         <div class="video-thumb-wrap">
-          <video src="${esc(v.video_url)}" muted preload="metadata" playsinline></video>
           <div class="video-play-icon">▶</div>
-          <div class="video-view-overlay">👁 <span class="vv-count">${v.views || 0}</span></div>
+          <div class="video-view-overlay">👁 <span class="vv-count">${v.views || 0}</span> &nbsp;·&nbsp; ❤️ ${v.like_count || 0}</div>
         </div>
         <div class="video-card-body">
           <p class="video-card-caption">${esc(v.caption || 'Farm reel')}</p>
+          <div style="font-size:0.62rem;color:rgba(255,255,255,0.3);margin-bottom:8px;font-family:var(--font-mono);">🎬 @${esc(session.displayName || session.name || 'you')}</div>
           <div class="video-card-footer">
             <span class="video-card-date">${date}</span>
             ${isAdmin || v.uploader_id === session.phone
@@ -891,6 +1236,14 @@
               : ''}
           </div>
         </div>`;
+
+      /* FIX: Set video src directly — avoids URL encoding corruption */
+      const thumbEl = document.createElement('video');
+      thumbEl.src      = v.video_url;
+      thumbEl.muted    = true;
+      thumbEl.preload  = 'metadata';
+      thumbEl.setAttribute('playsinline', '');
+      card.querySelector('.video-thumb-wrap').insertBefore(thumbEl, card.querySelector('.video-play-icon'));
 
       // Click → go to videos page
       card.querySelector('.video-thumb-wrap').addEventListener('click', () => {
@@ -921,30 +1274,124 @@
     }
 
     /* ════════════════════════
+       EDIT PROFILE
+    ════════════════════════ */
+    const editOverlay  = document.getElementById('edit-modal-overlay');
+    const editFullname = document.getElementById('edit-fullname');
+    const editDisplay  = document.getElementById('edit-displayname');
+    const editStatus   = document.getElementById('edit-status');
+    const btnEditSave  = document.getElementById('btn-edit-save');
+
+    document.getElementById('btn-edit-profile').addEventListener('click', () => {
+      /* Pre-fill current values */
+      editFullname.value = session.name    || '';
+      editDisplay.value  = session.displayName || '';
+      hideEditStatus();
+      editOverlay.classList.add('open');
+      editFullname.focus();
+    });
+
+    document.getElementById('btn-edit-cancel').addEventListener('click', closeEditModal);
+    editOverlay.addEventListener('click', e => { if (e.target === editOverlay) closeEditModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEditModal(); });
+
+    function closeEditModal() { editOverlay.classList.remove('open'); hideEditStatus(); }
+
+    btnEditSave.addEventListener('click', saveProfile);
+    editDisplay.addEventListener('keydown', e => { if (e.key === 'Enter') saveProfile(); });
+
+    async function saveProfile() {
+      const newName    = editFullname.value.trim();
+      const newDisplay = editDisplay.value.trim().replace(/\s/g, '').toLowerCase();
+
+      if (!newName)    return showEditStatus('error', 'Full name cannot be empty.');
+      if (!newDisplay) return showEditStatus('error', 'Display name cannot be empty.');
+      if (!/^[a-zA-Z0-9_]{2,24}$/.test(newDisplay))
+        return showEditStatus('error', 'Display name: 2–24 characters, letters/numbers/underscores only.');
+
+      /* No changes made */
+      if (newName === session.name && newDisplay === session.displayName) {
+        closeEditModal(); return;
+      }
+
+      showEditStatus('loading', 'Saving…');
+      btnEditSave.disabled = true;
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/profiles?phone=eq.${session.phone}`, {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ full_name: newName, display_name: newDisplay }),
+        });
+
+        if (!res.ok) throw new Error(`Save failed [${res.status}]`);
+
+        /* Update localStorage session */
+        const updatedSession = { ...session, name: newName, displayName: newDisplay, loginTime: session.loginTime };
+        localStorage.setItem('gf_session', JSON.stringify(updatedSession));
+
+        /* Update UI live */
+        document.getElementById('profile-name').textContent = newName;
+        document.getElementById('profile-displayname').textContent = '@' + newDisplay;
+        document.getElementById('profile-avatar').textContent = newName[0].toUpperCase();
+
+        showEditStatus('success', '✓ Profile updated successfully!');
+        btnEditSave.disabled = false;
+
+        setTimeout(() => {
+          closeEditModal();
+          showToast('Profile updated!');
+        }, 1200);
+
+      } catch (err) {
+        showEditStatus('error', err.message || 'Could not save. Please try again.');
+        btnEditSave.disabled = false;
+      }
+    }
+
+    function showEditStatus(type, msg) {
+      editStatus.className = `edit-modal-status ${type}`;
+      editStatus.style.display = type === 'loading' ? 'flex' : 'block';
+      editStatus.innerHTML = type === 'loading'
+        ? `<span class="edit-spinner"></span>${msg}` : msg;
+    }
+    function hideEditStatus() { editStatus.style.display = 'none'; editStatus.className = 'edit-modal-status'; }
+
+    /* ════════════════════════
        STATS
     ════════════════════════ */
-    let _photoViews = 0;
-    let _videoViews = 0;
+    let _photoViews = 0, _videoViews = 0, _photoLikes = 0, _videoLikes = 0;
 
-    function updateTotalViews(photoViews, videoViews) {
-      if (photoViews !== null) _photoViews = photoViews;
-      if (videoViews !== null) _videoViews = videoViews;
+    function updateTotalViews(photoViews, videoViews, photoLikes, videoLikes) {
+      if (photoViews !== null && photoViews !== undefined) _photoViews = photoViews;
+      if (videoViews !== null && videoViews !== undefined) _videoViews = videoViews;
+      if (photoLikes !== null && photoLikes !== undefined) _photoLikes = photoLikes;
+      if (videoLikes !== null && videoLikes !== undefined) _videoLikes = videoLikes;
       document.getElementById('stat-views').textContent = _photoViews + _videoViews;
+      document.getElementById('stat-likes').textContent = _photoLikes + _videoLikes;
     }
 
     function recomputeStats() {
-      const photos = document.querySelectorAll('#photo-grid .photo-card').length;
-      const videos = document.querySelectorAll('#video-grid .video-card').length;
-      document.getElementById('tc-photos').textContent   = photos;
-      document.getElementById('tc-videos').textContent   = videos;
-      document.getElementById('stat-photos').textContent = photos;
-      document.getElementById('stat-videos').textContent = videos;
-      // Recount views
-      let pv = 0;
+      const pubPhotos  = document.querySelectorAll('#public-photo-grid .photo-card').length;
+      const privPhotos = document.querySelectorAll('#private-photo-grid .photo-card').length;
+      const pubVideos  = document.querySelectorAll('#public-video-grid .video-card').length;
+      window._publicPhotoCount = pubPhotos;
+      window._publicVideoCount = pubVideos;
+      document.getElementById('tc-private').textContent  = privPhotos;
+      document.getElementById('stat-photos').textContent = pubPhotos + privPhotos;
+      document.getElementById('stat-videos').textContent = pubVideos;
+      updatePublicTabCount();
+      showPanel();
+      // Recount views/likes from visible cards
+      let pv = 0, plk = 0;
       document.querySelectorAll('.pv-count').forEach(el => { pv += parseInt(el.textContent) || 0; });
       let vv = 0;
       document.querySelectorAll('.vv-count').forEach(el => { vv += parseInt(el.textContent) || 0; });
-      updateTotalViews(pv, vv);
+      updateTotalViews(pv, vv, null, null);
     }
 
     /* ════════════════════════
@@ -968,6 +1415,9 @@
 
   })();
   </script>
+
+  <!-- Mobile bottom nav -->
+  <script src="js/main.js"></script>
 
 </body>
 </html>
